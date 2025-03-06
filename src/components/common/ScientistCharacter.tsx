@@ -1,124 +1,166 @@
-import React from 'react';
+import React from "react";
+import { cn } from "@/lib/utils";
+import { Beaker, Brain, Lightbulb, HeartPulse, Star } from "lucide-react";
 
 interface ScientistCharacterProps {
   animate?: boolean;
-  mood?: 'happy' | 'thinking' | 'excited' | 'confused' | 'neutral';
-  size?: 'small' | 'medium' | 'large';
+  mood?: "happy" | "thinking" | "excited" | "confused" | "neutral";
+  size?: "small" | "medium" | "large";
 }
 
-/**
- * Componente que representa al científico loco del laboratorio
- */
-const ScientistCharacter: React.FC<ScientistCharacterProps> = ({ 
-  animate = false, 
-  mood = 'neutral',
-  size = 'medium'
+const ScientistCharacter: React.FC<ScientistCharacterProps> = ({
+  animate = false,
+  mood = "neutral",
+  size = "medium",
 }) => {
-  // Determinar el tamaño del científico
-  const getSize = () => {
-    switch (size) {
-      case 'small':
-        return 'w-24 h-24';
-      case 'medium':
-        return 'w-32 h-32';
-      case 'large':
-        return 'w-48 h-48';
-      default:
-        return 'w-32 h-32';
-    }
+  // Tamaños para diferentes pantallas
+  const sizes = {
+    small: "w-16 h-16 sm:w-20 sm:h-20",
+    medium: "w-24 h-24 sm:w-32 sm:h-32",
+    large: "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48",
   };
-  
-  // Determinar la expresión facial según el estado de ánimo
-  const getFacialExpression = () => {
+
+  // Animación
+  const animation = animate ? "animate-float" : "";
+
+  // Determinar el icono y color según el estado de ánimo
+  const getMoodIcon = () => {
     switch (mood) {
-      case 'happy':
-        return (
-          <>
-            <path d="M20,20 Q25,25 30,20" stroke="#000" strokeWidth="1.5" fill="none" />
-            <circle cx="15" cy="15" r="2" fill="#000" />
-            <circle cx="35" cy="15" r="2" fill="#000" />
-          </>
-        );
-      case 'thinking':
-        return (
-          <>
-            <path d="M20,20 Q25,22 30,20" stroke="#000" strokeWidth="1.5" fill="none" />
-            <circle cx="15" cy="15" r="2" fill="#000" />
-            <circle cx="35" cy="15" r="2" fill="#000" />
-            <circle cx="42" cy="18" r="3" fill="#fff" stroke="#000" />
-            <circle cx="45" cy="13" r="2" fill="#fff" stroke="#000" />
-          </>
-        );
-      case 'excited':
-        return (
-          <>
-            <path d="M20,18 Q25,25 30,18" stroke="#000" strokeWidth="1.5" fill="none" />
-            <circle cx="15" cy="15" r="2.5" fill="#000" />
-            <circle cx="35" cy="15" r="2.5" fill="#000" />
-            <path d="M50,10 L45,15 L50,20" stroke="#000" strokeWidth="1.5" fill="none" />
-          </>
-        );
-      case 'confused':
-        return (
-          <>
-            <path d="M20,22 Q25,18 30,22" stroke="#000" strokeWidth="1.5" fill="none" />
-            <circle cx="15" cy="15" r="2" fill="#000" />
-            <circle cx="35" cy="15" r="2" fill="#000" />
-            <path d="M40,5 Q45,10 50,5" stroke="#000" strokeWidth="1.5" fill="none" />
-          </>
-        );
-      default: // neutral
-        return (
-          <>
-            <path d="M20,20 Q25,22 30,20" stroke="#000" strokeWidth="1.5" fill="none" />
-            <circle cx="15" cy="15" r="2" fill="#000" />
-            <circle cx="35" cy="15" r="2" fill="#000" />
-          </>
-        );
+      case "happy":
+        return <Star className="text-yellow-400 animate-pulse" />;
+      case "thinking":
+        return <Brain className="text-blue-400 animate-pulse" />;
+      case "excited":
+        return <Lightbulb className="text-yellow-400 animate-pulse" />;
+      case "confused":
+        return <HeartPulse className="text-red-400 animate-pulse" />;
+      default:
+        return <Beaker className="text-purple-400" />;
     }
   };
-  
-  // Animación cuando se activa
-  const animationClass = animate ? 'animate-bounce' : '';
-  
+
   return (
-    <div className={`${getSize()} ${animationClass}`}>
-      <svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg">
-        {/* Cabello despeinado */}
-        <path d="M10,15 Q5,5 15,5 Q25,0 30,5 Q40,0 45,10 Q50,15 45,20" fill="#ddd" />
-        
-        {/* Cara */}
-        <circle cx="25" cy="25" r="20" fill="#ffe0bd" />
-        
-        {/* Expresión facial */}
-        {getFacialExpression()}
-        
-        {/* Gafas */}
-        <circle cx="15" cy="15" r="5" fill="none" stroke="#000" strokeWidth="1" />
-        <circle cx="35" cy="15" r="5" fill="none" stroke="#000" strokeWidth="1" />
-        <path d="M20,15 L30,15" stroke="#000" strokeWidth="1" />
-        <path d="M5,15 L10,15" stroke="#000" strokeWidth="1" />
-        <path d="M40,15 L45,15" stroke="#000" strokeWidth="1" />
-        
-        {/* Bata de laboratorio */}
-        <path d="M5,30 L10,45 L15,60 L25,55 L35,60 L40,45 L45,30" fill="#fff" stroke="#ddd" />
-        
-        {/* Detalles de la bata */}
-        <path d="M20,30 L20,50" stroke="#ddd" strokeWidth="1" />
-        <path d="M30,30 L30,50" stroke="#ddd" strokeWidth="1" />
-        <circle cx="25" cy="35" r="2" fill="#ddd" />
-        <circle cx="25" cy="40" r="2" fill="#ddd" />
-        <circle cx="25" cy="45" r="2" fill="#ddd" />
-        
-        {/* Burbujas o elementos de poción (para el modo 'thinking' o 'excited') */}
-        {(mood === 'thinking' || mood === 'excited') && (
-          <>
-            <circle cx="45" cy="8" r="3" fill="#a0f" fillOpacity="0.5" className="animate-pulse" />
-            <circle cx="48" cy="15" r="2" fill="#0af" fillOpacity="0.5" className="animate-pulse" />
-            <circle cx="42" cy="12" r="1.5" fill="#fa0" fillOpacity="0.5" className="animate-pulse" />
-          </>
+    <div className={cn("relative flex flex-col items-center", animation)}>
+      <div
+        className={cn(
+          "relative rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 p-1",
+          sizes[size]
         )}
-      </svg>
+      >
+        <div className="absolute -right-2 -top-2 z-10 rounded-full bg-white p-1 shadow-md">
+          {getMoodIcon()}
+        </div>
+        <div className="h-full w-full overflow-hidden rounded-full bg-white">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            {/* Cabello */}
+            <path
+              d="M20,30 Q10,10 30,10 Q50,0 70,10 Q90,10 80,30"
+              fill="#706F6F"
+              stroke="#333"
+              strokeWidth="1"
+            />
+
+            {/* Cara */}
+            <circle cx="50" cy="50" r="40" fill="#FFE0BD" />
+
+            {/* Expresión según el estado de ánimo */}
+            {mood === "happy" && (
+              <path
+                d="M30,55 Q50,70 70,55"
+                fill="none"
+                stroke="#333"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            )}
+            {mood === "thinking" && (
+              <path
+                d="M30,60 Q50,60 70,60"
+                fill="none"
+                stroke="#333"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            )}
+            {mood === "excited" && (
+              <path
+                d="M30,50 Q50,75 70,50"
+                fill="none"
+                stroke="#333"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            )}
+            {mood === "confused" && (
+              <path
+                d="M30,65 Q50,50 70,65"
+                fill="none"
+                stroke="#333"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            )}
+            {mood === "neutral" && (
+              <path
+                d="M30,60 Q50,65 70,60"
+                fill="none"
+                stroke="#333"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            )}
+
+            {/* Ojos */}
+            <circle className={cn(mood === "excited" ? "animate-pulse" : "")} cx="35" cy="40" r="5" fill="#333" />
+            <circle className={cn(mood === "excited" ? "animate-pulse" : "")} cx="65" cy="40" r="5" fill="#333" />
+
+            {/* Gafas */}
+            <circle
+              cx="35"
+              cy="40"
+              r="10"
+              fill="none"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle
+              cx="65"
+              cy="40"
+              r="10"
+              fill="none"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <path
+              d="M45,40 L55,40"
+              stroke="#333"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <path
+              d="M15,40 L25,40"
+              stroke="#333"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M75,40 L85,40"
+              stroke="#333"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Burbujas de pensamiento para el modo thinking */}
+      {(mood === "thinking" || mood === "excited") && (
+        <div className="absolute -right-4 -top-4 z-0">
+          <div className="h-3 w-3 rounded-full bg-blue-400 opacity-70 animate-float" style={{ animationDelay: "0s" }} />
+          <div className="ml-4 mt-2 h-4 w-4 rounded-full bg-purple-400 opacity-70 animate-float" style={{ animationDelay: "0.5s" }} />
+          <div className="ml-1 mt-1 h-2 w-2 rounded-full bg-indigo-400 opacity-70 animate-float" style={{ animationDelay: "1s" }} />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useGame } from '../contexts/GameContext';
-import Challenge from './Challenge';
-import ScientistCharacter from './common/ScientistCharacter';
-import Flask from './laboratory/Flask';
+import React, { useState, useEffect } from "react";
+import { useGame } from "@/contexts/GameContext";
+import Challenge from "./Challenge";
+import ScientistCharacter from "./common/ScientistCharacter";
+import Flask from "./laboratory/Flask";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Beaker, Star, Brain, Book, PlayCircle } from "lucide-react";
 
 const Laboratory: React.FC = () => {
   const { gameState, startGame } = useGame();
@@ -16,7 +21,7 @@ const Laboratory: React.FC = () => {
       const timer = setTimeout(() => {
         setAnimateScientist(false);
       }, 1000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [gameState.feedback]);
@@ -26,118 +31,230 @@ const Laboratory: React.FC = () => {
     startGame();
   };
 
-  // Renderiza la introducción del juego
+  // Pantalla de introducción
   const renderIntro = () => (
-    <div className="p-4 sm:p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-md flex flex-col items-center space-y-4 sm:space-y-6 bg-gradient-to-r from-blue-50 to-purple-50 m-4">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center text-purple-800">El Laboratorio de Palabras</h1>
-      
-      <div className="text-center mb-2 sm:mb-4">
-        <ScientistCharacter animate={false} size="large" mood="happy" />
-        <p className="text-lg sm:text-xl mt-3 sm:mt-4 text-gray-700 px-2">
-          ¡Bienvenido a mi laboratorio mágico de palabras! Soy el profesor Letralocas y necesito tu ayuda para completar mis experimentos.
-        </p>
-      </div>
+    <div className="container max-w-5xl mx-auto px-4 pt-8 pb-16">
+      <Card className="magical-pattern shadow-xl border-none overflow-hidden">
+        <CardHeader className="text-center pb-2">
+          <div className="w-20 h-20 mx-auto bg-white rounded-full p-1 shadow-lg mb-2">
+            <div className="w-full h-full rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+              <Beaker className="h-10 w-10 text-white" />
+            </div>
+          </div>
+          <CardTitle className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-600">
+            El Laboratorio de Palabras
+          </CardTitle>
+          <CardDescription className="text-white/80">
+            Una aventura mágica para aprender jugando
+          </CardDescription>
+        </CardHeader>
 
-      <div className="bg-blue-100 p-3 sm:p-4 rounded-lg w-full max-w-2xl">
-        <h2 className="text-xl sm:text-2xl font-semibold text-blue-800 mb-2">¿Cómo jugar?</h2>
-        <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
-          <li>Te mostraré una <strong>fórmula mágica</strong> (expresión regular) que describe un patrón de letras.</li>
-          <li>Tu misión es escribir palabras que coincidan con ese patrón.</li>
-          <li>Por cada palabra correcta, ganarás puntos.</li>
-          <li>Completa cada desafío para avanzar al siguiente nivel.</li>
-        </ul>
-      </div>
+        <CardContent className="px-6 pb-6 pt-0">
+          <div className="grid sm:grid-cols-2 gap-8 mb-8">
+            <div className="flex justify-center">
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                <ScientistCharacter animate={false} size="large" mood="happy" />
+              </div>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+              <h2 className="text-xl font-semibold text-white mb-3 flex items-center">
+                <Book className="inline mr-2 h-5 w-5" /> Bienvenido
+              </h2>
+              <p className="text-white/90 mb-4">
+                ¡Hola! Soy el profesor Letralocas y necesito tu ayuda para completar mis experimentos con palabras mágicas.
+              </p>
+              <p className="text-white/90">
+                Juntos descifraremos fórmulas mágicas y crearemos las palabras correctas para que mis experimentos sean todo un éxito.
+              </p>
+            </div>
+          </div>
 
-      <div className="bg-purple-100 p-3 sm:p-4 rounded-lg w-full max-w-2xl">
-        <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-2">Guía de los Patrones</h2>
-        <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
-          <li><strong>^</strong> - Indica el inicio de la palabra.</li>
-          <li><strong>[aeiou]</strong> - Representa cualquier vocal (a, e, i, o, u).</li>
-          <li><strong>$</strong> - Indica el final de la palabra.</li>
-        </ul>
-        <p className="mt-2 text-gray-700 text-sm sm:text-base">Por ejemplo, <strong>^c[aeiou]sa$</strong> busca palabras que empiezan con "c", siguen con cualquier vocal, luego "s" y terminan con "a".</p>
-      </div>
+          <div className="grid sm:grid-cols-2 gap-6 mb-8">
+            <Card className="bg-white/10 backdrop-blur-sm border-0">
+              <CardHeader className="pb-2">
+                <div className="flex items-center mb-1">
+                  <Brain className="h-5 w-5 mr-2 text-blue-300" />
+                  <CardTitle className="text-lg text-white">¿Cómo jugar?</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ul className="text-white/80 text-sm space-y-2">
+                  <li className="flex gap-2">
+                    <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">1</span>
+                    <span>Te mostraré una <strong>fórmula mágica</strong> que describe un patrón de letras.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">2</span>
+                    <span>Tu misión es escribir palabras que coincidan con el patrón.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">3</span>
+                    <span>Por cada palabra correcta, ganarás puntos para avanzar.</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
 
-      <button
-        onClick={handleStartGame}
-        className="px-4 sm:px-6 py-2 sm:py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition-all transform hover:scale-105 mt-2"
-      >
-        ¡Comenzar la Aventura!
-      </button>
+            <Card className="bg-white/10 backdrop-blur-sm border-0">
+              <CardHeader className="pb-2">
+                <div className="flex items-center mb-1">
+                  <Star className="h-5 w-5 mr-2 text-yellow-300" />
+                  <CardTitle className="text-lg text-white">Guía de Patrones</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ul className="text-white/80 text-sm space-y-2">
+                  <li className="flex items-start gap-2">
+                    <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5">^</Badge>
+                    <span>Indica el <strong>inicio</strong> de la palabra.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Badge className="bg-purple-500/50 border-0 shrink-0 mt-0.5">[aeiou]</Badge>
+                    <span>Representa <strong>cualquier vocal</strong> (a, e, i, o, u).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5">$</Badge>
+                    <span>Indica el <strong>final</strong> de la palabra.</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Button
+              onClick={handleStartGame}
+              variant="glow"
+              size="lg"
+              className="gap-2"
+            >
+              <PlayCircle className="h-5 w-5" />
+              ¡Comenzar la Aventura!
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 
-  // Renderiza el laboratorio con el desafío actual
+  // Laboratorio
   const renderLaboratory = () => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     const challenge = currentLevel.challenges[gameState.currentChallenge];
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white p-3 sm:p-6">
-        <div className="max-w-6xl mx-auto">
+      <div className="min-h-screen laboratory-pattern text-foreground">
+        <div className="container mx-auto px-4 py-6">
           {/* Cabecera */}
-          <header className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-8 gap-3">
-            <div className="text-center sm:text-left">
-              <h1 className="text-2xl sm:text-3xl font-bold">El Laboratorio de Palabras</h1>
-              <p className="text-base sm:text-lg">Nivel {currentLevel.id}: {currentLevel.name}</p>
+          <header className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2">
+                <Beaker className="h-6 w-6 text-primary" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+                  El Laboratorio de Palabras
+                </span>
+              </h1>
+              <p className="text-muted-foreground">
+                Nivel {currentLevel.id}: {currentLevel.name}
+              </p>
             </div>
-            <div className="bg-purple-800 rounded-lg p-2 sm:p-3 text-center min-w-24">
-              <p className="text-sm opacity-80">Puntos</p>
-              <p className="text-xl sm:text-2xl font-bold">{gameState.totalPoints}/{currentLevel.requiredPoints}</p>
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="bg-primary/10">
+                <Star className="h-3 w-3 mr-1 text-yellow-400" />
+                <span>Puntos: {gameState.totalPoints}/{currentLevel.requiredPoints}</span>
+              </Badge>
             </div>
           </header>
 
-          {/* Área principal del laboratorio */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
-            {/* Panel izquierdo - Científico y diálogo */}
-            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center">
-              <ScientistCharacter 
-                animate={animateScientist} 
-                mood={gameState.feedback?.isCorrect ? "excited" : gameState.feedback ? "confused" : "thinking"} 
-                size="medium" 
-              />
-              
-              <div className="mt-3 sm:mt-4 bg-white text-indigo-900 p-3 sm:p-4 rounded-lg relative w-full">
-                {gameState.feedback ? (
-                  <p className={`text-base sm:text-lg ${gameState.feedback.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                    {gameState.feedback.message}
-                  </p>
-                ) : (
-                  <p className="text-base sm:text-lg">
-                    Experimento {gameState.currentChallenge + 1}: {challenge.explanation}
-                  </p>
-                )}
+          <Separator className="mb-6" />
+
+          {/* Área principal */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Panel izquierdo - Científico */}
+            <div className="lg:col-span-1 flex flex-col items-center justify-start gap-4">
+              <Card className="w-full bg-primary/5 backdrop-blur-sm border-primary/10">
+                <CardContent className="p-6 flex flex-col items-center">
+                  <ScientistCharacter
+                    animate={animateScientist}
+                    mood={
+                      gameState.feedback?.isCorrect
+                        ? "excited"
+                        : gameState.feedback
+                        ? "confused"
+                        : "thinking"
+                    }
+                    size="medium"
+                  />
+
+                  <div className="mt-4 w-full">
+                    <div
+                      className={`p-3 rounded-lg text-sm ${
+                        gameState.feedback
+                          ? gameState.feedback.isCorrect
+                            ? "bg-green-500/10 text-green-500 border border-green-500/20"
+                            : "bg-red-500/10 text-red-500 border border-red-500/20"
+                          : "bg-accent/10 text-accent-foreground border border-accent/20"
+                      }`}
+                    >
+                      {gameState.feedback ? (
+                        <p>{gameState.feedback.message}</p>
+                      ) : (
+                        <p>
+                          <span className="font-semibold">Experimento {gameState.currentChallenge + 1}:</span> ¡Necesito tu ayuda para encontrar la palabra correcta!
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Frascos como miniaturas en pantallas pequeñas */}
+              <div className="w-full lg:hidden">
+                <h3 className="text-sm font-medium mb-3 text-muted-foreground">Experimentos:</h3>
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                  {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
+                    <div key={c.id} className="flex justify-center">
+                      <Flask
+                        active={index === gameState.currentChallenge}
+                        completed={index < gameState.currentChallenge}
+                        formula={c.pattern}
+                        color={index % 2 === 0 ? "blue" : "purple"}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Panel central - Desafío actual */}
-            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-4 sm:p-6 col-span-1 lg:col-span-2">
+            {/* Panel central - Desafío */}
+            <div className="lg:col-span-3">
               <Challenge />
             </div>
           </div>
 
-          {/* Frascos con fórmulas y palabras */}
-          <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
-              <Flask
-                key={c.id}
-                active={index === gameState.currentChallenge}
-                completed={index < gameState.currentChallenge}
-                formula={c.pattern}
-                color={index % 2 === 0 ? "blue" : "purple"}
-              />
-            ))}
+          {/* Frascos en pantallas grandes */}
+          <div className="hidden lg:block mt-8">
+            <h3 className="text-sm font-medium mb-4 text-muted-foreground">Experimentos en progreso:</h3>
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+              {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
+                <div key={c.id} className="flex justify-center">
+                  <Flask
+                    active={index === gameState.currentChallenge}
+                    completed={index < gameState.currentChallenge}
+                    formula={c.pattern}
+                    color={index % 2 === 0 ? "blue" : "purple"}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     );
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-600">
-      {showIntro ? renderIntro() : renderLaboratory()}
-    </div>
-  );
+  return <>{showIntro ? renderIntro() : renderLaboratory()}</>;
 };
 
 export default Laboratory;

@@ -1,110 +1,126 @@
-import React from 'react';
+import React from "react";
+import { cn } from "@/lib/utils";
+import { CheckCircle2 } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface FlaskProps {
   active: boolean;
   completed: boolean;
   formula: string;
-  color: 'blue' | 'purple' | 'green' | 'red' | 'orange';
+  color: "blue" | "purple" | "green" | "red" | "orange";
 }
 
-/**
- * Componente que representa un frasco de laboratorio con una fórmula (patrón regex)
- */
-const Flask: React.FC<FlaskProps> = ({ active, completed, formula, color }) => {
-  // Determinar el color del líquido y del brillo
-  const getColors = () => {
-    const colors = {
-      blue: {
-        liquidGradient: 'from-blue-400 to-blue-600',
-        glowColor: 'bg-blue-300',
-        borderColor: 'border-blue-700'
-      },
-      purple: {
-        liquidGradient: 'from-purple-400 to-purple-600',
-        glowColor: 'bg-purple-300',
-        borderColor: 'border-purple-700'
-      },
-      green: {
-        liquidGradient: 'from-green-400 to-green-600',
-        glowColor: 'bg-green-300',
-        borderColor: 'border-green-700'
-      },
-      red: {
-        liquidGradient: 'from-red-400 to-red-600',
-        glowColor: 'bg-red-300',
-        borderColor: 'border-red-700'
-      },
-      orange: {
-        liquidGradient: 'from-orange-400 to-orange-600',
-        glowColor: 'bg-orange-300',
-        borderColor: 'border-orange-700'
-      }
-    };
-    
-    return colors[color];
+const Flask: React.FC<FlaskProps> = ({
+  active,
+  completed,
+  formula,
+  color,
+}) => {
+  // Colores para los diferentes tipos de frascos
+  const flaskColors = {
+    blue: {
+      gradient: "from-blue-400 to-blue-600",
+      bubbles: "bg-blue-200",
+    },
+    purple: {
+      gradient: "from-purple-400 to-purple-600",
+      bubbles: "bg-purple-200",
+    },
+    green: {
+      gradient: "from-green-400 to-green-600",
+      bubbles: "bg-green-200",
+    },
+    red: {
+      gradient: "from-red-400 to-red-600",
+      bubbles: "bg-red-200",
+    },
+    orange: {
+      gradient: "from-orange-400 to-orange-600",
+      bubbles: "bg-orange-200",
+    },
   };
-  
-  const { liquidGradient, glowColor, borderColor } = getColors();
-  
-  // Clase para la animación del burbujeo
-  const bubbleAnimation = active ? 'animate-bubble' : '';
-  
-  // Clase para el estado completado
-  const completedClass = completed ? 'opacity-50' : '';
-  
-  // Clase para el frasco activo
-  const activeClass = active ? 'transform scale-110 shadow-lg' : '';
-  
-  // Reducir la fórmula para mostrarla en el frasco
-  const shortFormula = formula.length > 10 ? formula.slice(0, 10) + '...' : formula;
-  
+
+  const { gradient, bubbles } = flaskColors[color];
+
+  // Abreviar fórmula larga
+  const shortFormula = formula.length > 10 ? formula.slice(0, 8) + "..." : formula;
+
   return (
-    <div className={`relative mx-auto ${activeClass} ${completedClass} transition-all duration-300`}>
-      {/* Etiqueta del frasco */}
-      <div className="absolute -top-5 sm:-top-6 left-0 right-0 bg-white rounded-t-lg px-1 sm:px-2 py-0.5 sm:py-1 text-xxs sm:text-xs text-center overflow-hidden text-gray-700 font-mono border border-gray-300">
-        {shortFormula}
-      </div>
-      
-      {/* Frasco */}
-      <div className={`relative w-14 sm:w-16 md:w-20 h-20 sm:h-24 md:h-28 mx-auto ${borderColor} border-2 rounded-b-xl rounded-t-lg bg-opacity-70 bg-white overflow-hidden`}>
-        {/* Cuello del frasco */}
-        <div className="absolute top-0 left-0 right-0 h-3 sm:h-4 bg-white border-b-2 border-gray-300"></div>
-        
-        {/* Líquido */}
-        <div className={`absolute bottom-0 left-0 right-0 h-16 sm:h-18 md:h-20 bg-gradient-to-b ${liquidGradient}`}>
-          {/* Burbujas */}
-          {active && (
-            <>
-              <div className={`absolute w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full ${glowColor} opacity-70 bottom-2 left-2 sm:left-3 ${bubbleAnimation}`} style={{ animationDelay: '0s' }}></div>
-              <div className={`absolute w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full ${glowColor} opacity-70 bottom-3 sm:bottom-4 left-5 sm:left-7 ${bubbleAnimation}`} style={{ animationDelay: '0.5s' }}></div>
-              <div className={`absolute w-1.5 sm:w-2.5 h-1.5 sm:h-2.5 rounded-full ${glowColor} opacity-70 bottom-4 sm:bottom-6 left-3 sm:left-5 ${bubbleAnimation}`} style={{ animationDelay: '1s' }}></div>
-              <div className={`absolute w-0.5 sm:w-1 h-0.5 sm:h-1 rounded-full ${glowColor} opacity-70 bottom-7 sm:bottom-10 left-6 sm:left-10 ${bubbleAnimation}`} style={{ animationDelay: '1.5s' }}></div>
-            </>
-          )}
-        </div>
-        
-        {/* Brillo del frasco */}
-        <div className="absolute top-4 left-1 w-4 sm:w-6 h-10 sm:h-14 bg-white opacity-20 rounded-full transform rotate-20"></div>
-        
-        {/* Indicador de completado */}
-        {completed && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white bg-opacity-80 rounded-full p-0.5 sm:p-1">
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div 
+            className={cn(
+              "relative group transition-all duration-300",
+              active && "scale-110",
+              completed && "opacity-70"
+            )}
+          >
+            {/* Etiqueta de la fórmula */}
+            <div className="absolute -top-6 left-0 right-0 mx-auto w-4/5 bg-white text-center text-xs font-mono py-1 px-2 rounded-t-md shadow-sm border border-gray-200 truncate">
+              {shortFormula}
+            </div>
+
+            {/* Contenedor del frasco */}
+            <div className="flex flex-col items-center">
+              <div className={cn(
+                "w-16 h-24 sm:w-20 sm:h-28 relative rounded-b-xl",
+                active ? "ring-2 ring-white/50 shadow-lg" : ""
+              )}>
+                {/* Cuello del frasco */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 sm:w-10 h-4 bg-gray-200/90 border-2 border-gray-300/80 rounded-t-sm z-10"></div>
+
+                {/* Cuerpo del frasco */}
+                <div className="absolute top-3 inset-x-0 bottom-0 bg-gray-200/30 backdrop-blur-sm border-2 border-gray-300/50 rounded-b-xl overflow-hidden">
+                  {/* Líquido */}
+                  <div 
+                    className={cn(
+                      "absolute bottom-0 left-0 right-0 bg-gradient-to-b",
+                      gradient,
+                      completed ? "h-full" : "h-3/4"
+                    )}
+                  >
+                    {/* Burbujas */}
+                    {active && (
+                      <>
+                        <div className={cn("absolute w-2 h-2 rounded-full", bubbles, "animate-bubble")} 
+                          style={{ bottom: "10%", left: "20%", animationDelay: "0s" }}></div>
+                        <div className={cn("absolute w-1.5 h-1.5 rounded-full", bubbles, "animate-bubble")} 
+                          style={{ bottom: "20%", left: "60%", animationDelay: "0.5s" }}></div>
+                        <div className={cn("absolute w-2.5 h-2.5 rounded-full", bubbles, "animate-bubble")} 
+                          style={{ bottom: "30%", left: "30%", animationDelay: "1s" }}></div>
+                      </>
+                    )}
+
+                    {/* Brillo */}
+                    <div className="absolute top-0 left-0 w-1/3 h-full flask-shine"></div>
+                  </div>
+
+                  {/* Indicador de completado */}
+                  {completed && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <CheckCircle2 className="w-8 h-8 text-white drop-shadow-md" />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {active && (
+                <span className="mt-2 text-xs font-semibold text-white bg-accent/80 px-2 py-0.5 rounded-full">
+                  Activo
+                </span>
+              )}
             </div>
           </div>
-        )}
-      </div>
-      
-      {/* Indicador de activo */}
-      {active && (
-        <div className="absolute -bottom-3 sm:-bottom-4 left-0 right-0 text-xxs sm:text-xs text-center text-white font-bold">
-          Activo
-        </div>
-      )}
-    </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{formula}</p>
+          <p className="text-xs text-muted-foreground mt-1">
+            {completed ? "Completado" : active ? "Desafío actual" : "Próximo desafío"}
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 

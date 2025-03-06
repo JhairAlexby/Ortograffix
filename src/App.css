@@ -1,1 +1,92 @@
 @import "tailwindcss";
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 272 75% 60%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+
+  --accent: 229 75% 63%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+
+  --radius: 0.5rem;
+}
+
+.light {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+
+  --primary: 272 75% 55%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+
+  --accent: 229 75% 58%;
+  --accent-foreground: 240 5.9% 10%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 10% 3.9%;
+
+  --radius: 0.5rem;
+}
+
+.magical-pattern {
+  background-color: rgba(113, 47, 173, 0.15);
+  background-image: 
+    radial-gradient(at 47% 69%, hsl(242.00, 100%, 70%) 0, transparent 59%), 
+    radial-gradient(at 86% 9%, hsl(212.00, 92%, 63%) 0, transparent 50%),
+    radial-gradient(at 15% 29%, hsl(256.00, 96%, 67%) 0, transparent 59%);
+}
+
+.laboratory-pattern {
+  background-color: rgba(51, 8, 103, 0.6);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(261, 100%, 30%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(218, 100%, 30%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(282, 100%, 30%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(242, 100%, 30%, 0.5) 0px, transparent 50%);
+}
+
+.flask-shine {
+  background: linear-gradient(
+    45deg, 
+    transparent 45%, 
+    rgba(255, 255, 255, 0.3) 45%, 
+    rgba(255, 255, 255, 0.3) 55%, 
+    transparent 55%
+  );
+}

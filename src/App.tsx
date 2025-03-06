@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import './App.css';
-import { GameProvider } from './contexts/GameContext';
-import Laboratory from './components/Laboratory';
+import { GameProvider } from "./contexts/GameContext";
+import Laboratory from "./components/Laboratory";
+import "./App.css"; // Usando el archivo CSS existente
+import "./index.css"; // Asegurando que también se importe el CSS base
+import { TooltipProvider } from "./components/ui/tooltip";
 
 function App() {
   return (
-    <GameProvider>
-      <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-600">
+    <TooltipProvider>
+      <GameProvider>
         <Laboratory />
-      </div>
-    </GameProvider>
+      </GameProvider>
+    </TooltipProvider>
   );
 }
 
