@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { GameProvider } from './contexts/GameContext';
+import Laboratory from './components/Laboratory';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-     <h1 className='text-3xl font-bold underline'>Hello World</h1>
-    </>
-  )
+    <GameProvider>
+      <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-600">
+        <Laboratory />
+      </div>
+    </GameProvider>
+  );
 }
 
-export default App
+export default App;
