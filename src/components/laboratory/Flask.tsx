@@ -61,36 +61,36 @@ const Flask: React.FC<FlaskProps> = ({ active, completed, formula, color }) => {
   return (
     <div className={`relative mx-auto ${activeClass} ${completedClass} transition-all duration-300`}>
       {/* Etiqueta del frasco */}
-      <div className="absolute -top-6 left-0 right-0 bg-white rounded-t-lg px-2 py-1 text-xs text-center overflow-hidden text-gray-700 font-mono border border-gray-300">
+      <div className="absolute -top-5 sm:-top-6 left-0 right-0 bg-white rounded-t-lg px-1 sm:px-2 py-0.5 sm:py-1 text-xxs sm:text-xs text-center overflow-hidden text-gray-700 font-mono border border-gray-300">
         {shortFormula}
       </div>
       
       {/* Frasco */}
-      <div className={`relative w-20 h-28 mx-auto ${borderColor} border-2 rounded-b-xl rounded-t-lg bg-opacity-70 bg-white overflow-hidden`}>
+      <div className={`relative w-14 sm:w-16 md:w-20 h-20 sm:h-24 md:h-28 mx-auto ${borderColor} border-2 rounded-b-xl rounded-t-lg bg-opacity-70 bg-white overflow-hidden`}>
         {/* Cuello del frasco */}
-        <div className="absolute top-0 left-0 right-0 h-4 bg-white border-b-2 border-gray-300"></div>
+        <div className="absolute top-0 left-0 right-0 h-3 sm:h-4 bg-white border-b-2 border-gray-300"></div>
         
         {/* Líquido */}
-        <div className={`absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b ${liquidGradient}`}>
+        <div className={`absolute bottom-0 left-0 right-0 h-16 sm:h-18 md:h-20 bg-gradient-to-b ${liquidGradient}`}>
           {/* Burbujas */}
           {active && (
             <>
-              <div className={`absolute w-2 h-2 rounded-full ${glowColor} opacity-70 bottom-2 left-3 ${bubbleAnimation}`} style={{ animationDelay: '0s' }}></div>
-              <div className={`absolute w-1.5 h-1.5 rounded-full ${glowColor} opacity-70 bottom-4 left-7 ${bubbleAnimation}`} style={{ animationDelay: '0.5s' }}></div>
-              <div className={`absolute w-2.5 h-2.5 rounded-full ${glowColor} opacity-70 bottom-6 left-5 ${bubbleAnimation}`} style={{ animationDelay: '1s' }}></div>
-              <div className={`absolute w-1 h-1 rounded-full ${glowColor} opacity-70 bottom-10 left-10 ${bubbleAnimation}`} style={{ animationDelay: '1.5s' }}></div>
+              <div className={`absolute w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full ${glowColor} opacity-70 bottom-2 left-2 sm:left-3 ${bubbleAnimation}`} style={{ animationDelay: '0s' }}></div>
+              <div className={`absolute w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full ${glowColor} opacity-70 bottom-3 sm:bottom-4 left-5 sm:left-7 ${bubbleAnimation}`} style={{ animationDelay: '0.5s' }}></div>
+              <div className={`absolute w-1.5 sm:w-2.5 h-1.5 sm:h-2.5 rounded-full ${glowColor} opacity-70 bottom-4 sm:bottom-6 left-3 sm:left-5 ${bubbleAnimation}`} style={{ animationDelay: '1s' }}></div>
+              <div className={`absolute w-0.5 sm:w-1 h-0.5 sm:h-1 rounded-full ${glowColor} opacity-70 bottom-7 sm:bottom-10 left-6 sm:left-10 ${bubbleAnimation}`} style={{ animationDelay: '1.5s' }}></div>
             </>
           )}
         </div>
         
         {/* Brillo del frasco */}
-        <div className="absolute top-4 left-1 w-6 h-14 bg-white opacity-20 rounded-full transform rotate-20"></div>
+        <div className="absolute top-4 left-1 w-4 sm:w-6 h-10 sm:h-14 bg-white opacity-20 rounded-full transform rotate-20"></div>
         
         {/* Indicador de completado */}
         {completed && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white bg-opacity-80 rounded-full p-1">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div className="bg-white bg-opacity-80 rounded-full p-0.5 sm:p-1">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -100,7 +100,7 @@ const Flask: React.FC<FlaskProps> = ({ active, completed, formula, color }) => {
       
       {/* Indicador de activo */}
       {active && (
-        <div className="absolute -bottom-4 left-0 right-0 text-xs text-center text-white font-bold">
+        <div className="absolute -bottom-3 sm:-bottom-4 left-0 right-0 text-xxs sm:text-xs text-center text-white font-bold">
           Activo
         </div>
       )}

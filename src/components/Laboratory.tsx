@@ -28,19 +28,19 @@ const Laboratory: React.FC = () => {
 
   // Renderiza la introducción del juego
   const renderIntro = () => (
-    <div className="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-md flex flex-col items-center space-y-6 bg-gradient-to-r from-blue-50 to-purple-50">
-      <h1 className="text-4xl font-bold text-center text-purple-800">El Laboratorio de Palabras</h1>
+    <div className="p-4 sm:p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-md flex flex-col items-center space-y-4 sm:space-y-6 bg-gradient-to-r from-blue-50 to-purple-50 m-4">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-purple-800">El Laboratorio de Palabras</h1>
       
-      <div className="text-center mb-4">
+      <div className="text-center mb-2 sm:mb-4">
         <ScientistCharacter animate={false} size="large" mood="happy" />
-        <p className="text-xl mt-4 text-gray-700">
+        <p className="text-lg sm:text-xl mt-3 sm:mt-4 text-gray-700 px-2">
           ¡Bienvenido a mi laboratorio mágico de palabras! Soy el profesor Letralocas y necesito tu ayuda para completar mis experimentos.
         </p>
       </div>
 
-      <div className="bg-blue-100 p-4 rounded-lg max-w-2xl">
-        <h2 className="text-2xl font-semibold text-blue-800 mb-2">¿Cómo jugar?</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+      <div className="bg-blue-100 p-3 sm:p-4 rounded-lg w-full max-w-2xl">
+        <h2 className="text-xl sm:text-2xl font-semibold text-blue-800 mb-2">¿Cómo jugar?</h2>
+        <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
           <li>Te mostraré una <strong>fórmula mágica</strong> (expresión regular) que describe un patrón de letras.</li>
           <li>Tu misión es escribir palabras que coincidan con ese patrón.</li>
           <li>Por cada palabra correcta, ganarás puntos.</li>
@@ -48,19 +48,19 @@ const Laboratory: React.FC = () => {
         </ul>
       </div>
 
-      <div className="bg-purple-100 p-4 rounded-lg max-w-2xl">
-        <h2 className="text-2xl font-semibold text-purple-800 mb-2">Guía de los Patrones</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+      <div className="bg-purple-100 p-3 sm:p-4 rounded-lg w-full max-w-2xl">
+        <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-2">Guía de los Patrones</h2>
+        <ul className="list-disc pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
           <li><strong>^</strong> - Indica el inicio de la palabra.</li>
           <li><strong>[aeiou]</strong> - Representa cualquier vocal (a, e, i, o, u).</li>
           <li><strong>$</strong> - Indica el final de la palabra.</li>
         </ul>
-        <p className="mt-2 text-gray-700">Por ejemplo, <strong>^c[aeiou]sa$</strong> busca palabras que empiezan con "c", siguen con cualquier vocal, luego "s" y terminan con "a".</p>
+        <p className="mt-2 text-gray-700 text-sm sm:text-base">Por ejemplo, <strong>^c[aeiou]sa$</strong> busca palabras que empiezan con "c", siguen con cualquier vocal, luego "s" y terminan con "a".</p>
       </div>
 
       <button
         onClick={handleStartGame}
-        className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition-all transform hover:scale-105"
+        className="px-4 sm:px-6 py-2 sm:py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 transition-all transform hover:scale-105 mt-2"
       >
         ¡Comenzar la Aventura!
       </button>
@@ -73,37 +73,37 @@ const Laboratory: React.FC = () => {
     const challenge = currentLevel.challenges[gameState.currentChallenge];
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white p-6">
+      <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white p-3 sm:p-6">
         <div className="max-w-6xl mx-auto">
           {/* Cabecera */}
-          <header className="flex justify-between items-center mb-8">
-            <div>
-              <h1 className="text-3xl font-bold">El Laboratorio de Palabras</h1>
-              <p className="text-lg">Nivel {currentLevel.id}: {currentLevel.name}</p>
+          <header className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-8 gap-3">
+            <div className="text-center sm:text-left">
+              <h1 className="text-2xl sm:text-3xl font-bold">El Laboratorio de Palabras</h1>
+              <p className="text-base sm:text-lg">Nivel {currentLevel.id}: {currentLevel.name}</p>
             </div>
-            <div className="bg-purple-800 rounded-lg p-3 text-center">
+            <div className="bg-purple-800 rounded-lg p-2 sm:p-3 text-center min-w-24">
               <p className="text-sm opacity-80">Puntos</p>
-              <p className="text-2xl font-bold">{gameState.totalPoints}/{currentLevel.requiredPoints}</p>
+              <p className="text-xl sm:text-2xl font-bold">{gameState.totalPoints}/{currentLevel.requiredPoints}</p>
             </div>
           </header>
 
           {/* Área principal del laboratorio */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
             {/* Panel izquierdo - Científico y diálogo */}
-            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-6 flex flex-col items-center justify-center">
+            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center">
               <ScientistCharacter 
                 animate={animateScientist} 
                 mood={gameState.feedback?.isCorrect ? "excited" : gameState.feedback ? "confused" : "thinking"} 
                 size="medium" 
               />
               
-              <div className="mt-4 bg-white text-indigo-900 p-4 rounded-lg relative speech-bubble">
+              <div className="mt-3 sm:mt-4 bg-white text-indigo-900 p-3 sm:p-4 rounded-lg relative w-full">
                 {gameState.feedback ? (
-                  <p className={`text-lg ${gameState.feedback.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                  <p className={`text-base sm:text-lg ${gameState.feedback.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
                     {gameState.feedback.message}
                   </p>
                 ) : (
-                  <p className="text-lg">
+                  <p className="text-base sm:text-lg">
                     Experimento {gameState.currentChallenge + 1}: {challenge.explanation}
                   </p>
                 )}
@@ -111,13 +111,13 @@ const Laboratory: React.FC = () => {
             </div>
 
             {/* Panel central - Desafío actual */}
-            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-6 col-span-1 lg:col-span-2">
+            <div className="bg-indigo-800 bg-opacity-50 rounded-xl p-4 sm:p-6 col-span-1 lg:col-span-2">
               <Challenge />
             </div>
           </div>
 
           {/* Frascos con fórmulas y palabras */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
               <Flask
                 key={c.id}

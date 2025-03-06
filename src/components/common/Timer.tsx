@@ -57,14 +57,14 @@ const Timer: React.FC<TimerProps> = ({
   };
   
   return (
-    <div className="w-32">
-      <div className="text-center mb-1 text-xs">Tiempo Restante</div>
-      <div className="relative h-8 rounded-full bg-gray-200 shadow-inner overflow-hidden">
+    <div className="w-24 sm:w-32">
+      <div className="text-center mb-1 text-xxs sm:text-xs">Tiempo Restante</div>
+      <div className="relative h-6 sm:h-8 rounded-full bg-gray-200 shadow-inner overflow-hidden">
         <div 
           className={`absolute left-0 top-0 bottom-0 ${getTimerColor()} transition-all duration-1000 ease-linear`}
           style={{ width: `${getProgressPercentage()}%` }}
         ></div>
-        <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-shadow">
+        <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs sm:text-base">
           {formatTime(seconds)}
         </div>
       </div>
