@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  --background: 220 25% 98%;
+  --foreground: 220 10% 10%;
   
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
+  --card: 220 25% 97%;
+  --card-foreground: 220 10% 10%;
 
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
+  --popover: 220 25% 97%;
+  --popover-foreground: 220 10% 10%;
 
-  --primary: 272 75% 60%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 220 70% 50%;
+  --primary-foreground: 220 10% 98%;
 
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 220 10% 90%;
+  --secondary-foreground: 220 10% 10%;
 
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted: 220 10% 90%;
+  --muted-foreground: 220 10% 40%;
 
-  --accent: 229 75% 63%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 210 100% 50%;
+  --accent-foreground: 210 10% 98%;
 
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 62.8% 50.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --border: 220 10% 85%;
+  --input: 220 10% 85%;
+  --ring: 220 70% 60%;
 
   --radius: 0.5rem;
 }
@@ -42,7 +42,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 240 10% 3.9%;
 
-  --primary: 272 75% 55%;
+  --primary: 220 70% 50%;
   --primary-foreground: 0 0% 98%;
 
   --secondary: 240 4.8% 95.9%;
@@ -51,7 +51,7 @@
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
-  --accent: 229 75% 58%;
+  --accent: 210 100% 50%;
   --accent-foreground: 240 5.9% 10%;
 
   --destructive: 0 84.2% 60.2%;
@@ -64,29 +64,51 @@
   --radius: 0.5rem;
 }
 
-.magical-pattern {
-  background-color: rgba(113, 47, 173, 0.15);
+.laboratory-pattern {
+  background-color: #f0f4ff;
   background-image: 
-    radial-gradient(at 47% 69%, hsl(242.00, 100%, 70%) 0, transparent 59%), 
-    radial-gradient(at 86% 9%, hsl(212.00, 92%, 63%) 0, transparent 50%),
-    radial-gradient(at 15% 29%, hsl(256.00, 96%, 67%) 0, transparent 59%);
+    radial-gradient(at 0% 0%, hsla(210, 100%, 95%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(215, 98%, 90%, 0.8) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(220, 100%, 85%, 0.6) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(230, 100%, 90%, 0.7) 0px, transparent 50%);
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100%;
+  display: block;
+  position: relative;
 }
 
-.laboratory-pattern {
-  background-color: rgba(51, 8, 103, 0.6);
+.magical-pattern {
+  background-color: rgba(107, 142, 255, 0.1);
   background-image: 
-    radial-gradient(at 0% 0%, hsla(261, 100%, 30%, 0.5) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(218, 100%, 30%, 0.5) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(282, 100%, 30%, 0.5) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, hsla(242, 100%, 30%, 0.5) 0px, transparent 50%);
+    radial-gradient(at 47% 69%, hsl(220, 100%, 80%) 0, transparent 59%), 
+    radial-gradient(at 86% 9%, hsl(210, 92%, 80%) 0, transparent 50%),
+    radial-gradient(at 15% 29%, hsl(230, 96%, 85%) 0, transparent 59%);
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 .flask-shine {
   background: linear-gradient(
     45deg, 
     transparent 45%, 
-    rgba(255, 255, 255, 0.3) 45%, 
-    rgba(255, 255, 255, 0.3) 55%, 
+    rgba(255, 255, 255, 0.5) 45%, 
+    rgba(255, 255, 255, 0.5) 55%, 
     transparent 55%
   );
+}
+
+.container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto;
+  overflow-x: hidden !important;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.grid, .card {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
