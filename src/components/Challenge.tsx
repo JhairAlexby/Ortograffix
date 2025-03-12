@@ -18,7 +18,6 @@ const Challenge: React.FC = () => {
   const currentLevel = gameState.levels[gameState.currentLevel];
   const challenge = currentLevel.challenges[gameState.currentChallenge];
 
-  // Efecto para enfocar el input cuando cambia el desafío
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -45,7 +44,6 @@ const Challenge: React.FC = () => {
     setShowHint(!showHint);
   };
 
-  // Genera una validación en tiempo real para retroalimentación visual
   const getLiveValidation = () => {
     if (!gameState.userInput) return null;
 
@@ -56,7 +54,6 @@ const Challenge: React.FC = () => {
 
   return (
     <div className="w-full space-y-4">
-      {/* Cabecera del desafío */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="bg-primary/10 text-primary-foreground">
@@ -74,10 +71,8 @@ const Challenge: React.FC = () => {
         />
       </div>
 
-      {/* Visualizador de patrones */}
       <PatternVisualizer pattern={challenge.pattern} />
 
-      {/* Área de entrada */}
       <Card className="overflow-hidden">
         <CardContent className="p-4">
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,14 +103,12 @@ const Challenge: React.FC = () => {
               </Button>
             </div>
 
-            {/* Retroalimentación en tiempo real */}
             {gameState.userInput && liveValidation && !liveValidation.isValid && liveValidation.errorMessage && (
               <div className="text-xs text-red-500 pl-1 animate-in fade-in-50">
                 {liveValidation.errorMessage}
               </div>
             )}
 
-            {/* Mensaje de feedback */}
             {gameState.feedback && (
               <div className={`p-3 rounded-md text-sm ${
                 gameState.feedback.isCorrect 
@@ -129,9 +122,7 @@ const Challenge: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Área de resultados */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Palabras correctas */}
         <Card>
           <CardContent className="p-4">
             <h3 className="text-sm font-medium mb-2 flex items-center">
@@ -154,7 +145,6 @@ const Challenge: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Intentos incorrectos */}
         <Card>
           <CardContent className="p-4">
             <h3 className="text-sm font-medium mb-2 flex items-center">
@@ -178,7 +168,6 @@ const Challenge: React.FC = () => {
         </Card>
       </div>
 
-      {/* Pista y avance */}
       <div className="flex flex-col-reverse sm:flex-row justify-between items-center mt-6 gap-4">
         <div>
           <Button
@@ -216,7 +205,6 @@ const Challenge: React.FC = () => {
         </Button>
       </div>
 
-      {/* Puntos necesarios para completar nivel */}
       <Separator className="my-2" />
       <div className="flex justify-center">
         <p className="text-xs text-muted-foreground">

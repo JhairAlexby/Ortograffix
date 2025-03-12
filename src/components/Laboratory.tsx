@@ -14,7 +14,6 @@ const Laboratory: React.FC = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [animateScientist, setAnimateScientist] = useState(false);
 
-  // Efecto para animar al científico cuando hay feedback
   useEffect(() => {
     if (gameState.feedback) {
       setAnimateScientist(true);
@@ -31,7 +30,6 @@ const Laboratory: React.FC = () => {
     startGame();
   };
 
-  // Pantalla de introducción
   const renderIntro = () => (
     <div className="container max-w-5xl mx-auto px-4 pt-8 pb-16">
       <Card className="magical-pattern shadow-xl border-none overflow-hidden">
@@ -138,7 +136,6 @@ const Laboratory: React.FC = () => {
     </div>
   );
 
-  // Laboratorio
   const renderLaboratory = () => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     const challenge = currentLevel.challenges[gameState.currentChallenge];
@@ -169,9 +166,7 @@ const Laboratory: React.FC = () => {
 
           <Separator className="mb-6" />
 
-          {/* Área principal */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Panel izquierdo - Científico */}
             <div className="lg:col-span-1 flex flex-col items-center justify-start gap-4">
               <Card className="w-full bg-primary/5 backdrop-blur-sm border-primary/10">
                 <CardContent className="p-6 flex flex-col items-center">
@@ -209,7 +204,6 @@ const Laboratory: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Frascos como miniaturas en pantallas pequeñas */}
               <div className="w-full lg:hidden">
                 <h3 className="text-sm font-medium mb-3 text-muted-foreground">Experimentos:</h3>
                 <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
@@ -227,13 +221,11 @@ const Laboratory: React.FC = () => {
               </div>
             </div>
 
-            {/* Panel central - Desafío */}
             <div className="lg:col-span-3">
               <Challenge />
             </div>
           </div>
 
-          {/* Frascos en pantallas grandes */}
           <div className="hidden lg:block mt-8">
             <h3 className="text-sm font-medium mb-4 text-muted-foreground">Experimentos en progreso:</h3>
             <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
