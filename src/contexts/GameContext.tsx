@@ -1,13 +1,12 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 
-// Definición de interfaces y tipos
 export interface Challenge {
   id: number;
   pattern: string;
   explanation: string;
   possibleWords: string[];
   correctWords: string[];
-  timeLimit: number; // en segundos
+  timeLimit: number; 
 }
 
 export interface Level {
@@ -44,7 +43,6 @@ interface GameContextType {
   resetLevel: () => void;
 }
 
-// Datos iniciales
 const initialLevels: Level[] = [
   {
     id: 1,
@@ -82,9 +80,57 @@ const initialLevels: Level[] = [
         possibleWords: ["balla", "belle", "belli", "bollo", "bulla"],
         correctWords: ["bella"],
         timeLimit: 60
+      },
+      {
+        id: 5,
+        pattern: "^t[aeiou]c[aeiou]$",
+        explanation: "Palabras que empiezan con 't', siguen con una vocal, luego 'c', y terminan con una vocal",
+        possibleWords: ["taca", "teca", "tica", "toca", "tuca"],
+        correctWords: ["toca"],
+        timeLimit: 60
+      },
+      {
+        id: 6,
+        pattern: "^l[aeiou]p[aeiou]$",
+        explanation: "Palabras que empiezan con 'l', siguen con una vocal, luego 'p', y terminan con una vocal",
+        possibleWords: ["lapa", "lepa", "lipa", "lopa", "lupa"],
+        correctWords: ["lupa"],
+        timeLimit: 60
+      },
+      {
+        id: 7,
+        pattern: "^n[aeiou]v[aeiou]$",
+        explanation: "Palabras que empiezan con 'n', siguen con una vocal, luego 'v', y terminan con una vocal",
+        possibleWords: ["nava", "neva", "niva", "nova", "nuva"],
+        correctWords: ["nave"],
+        timeLimit: 60
+      },
+      {
+        id: 8,
+        pattern: "^s[aeiou]l[aeiou]$",
+        explanation: "Palabras que empiezan con 's', siguen con una vocal, luego 'l', y terminan con una vocal",
+        possibleWords: ["sala", "sela", "sila", "sola", "sula"],
+        correctWords: ["sala"],
+        timeLimit: 60
+      },
+      {
+        id: 9,
+        pattern: "^r[aeiou]m[aeiou]$",
+        explanation: "Palabras que empiezan con 'r', siguen con una vocal, luego 'm', y terminan con una vocal",
+        possibleWords: ["rama", "rema", "rima", "roma", "ruma"],
+        correctWords: ["rama"],
+        timeLimit: 60
+      },
+      {
+        id: 10,
+        pattern: "^g[aeiou]t[aeiou]$",
+        explanation: "Palabras que empiezan con 'g', siguen con una vocal, luego 't', y terminan con una vocal",
+        possibleWords: ["gata", "geta", "gita", "gota", "guta"],
+        correctWords: ["gata"],
+        timeLimit: 60
       }
     ],
-    requiredPoints: 4 // Se necesitan 4 puntos para completar el nivel
+    requiredPoints: 6 // puntos para ganar (cambiar al mimso numero de desafios) 
   }
 ];
 
@@ -101,14 +147,11 @@ const initialState: GameState = {
   incorrectAttempts: []
 };
 
-// Creación del contexto
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
-// Proveedor del contexto
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [gameState, setGameState] = useState<GameState>(initialState);
 
-  // Timer para el desafío actual
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     
@@ -120,7 +163,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         }));
       }, 1000);
     } else if (gameState.remainingTime === 0 && gameState.gameStarted) {
-      // Tiempo agotado
       setGameState(prevState => ({
         ...prevState,
         feedback: {
@@ -135,7 +177,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [gameState.gameStarted, gameState.remainingTime]);
 
-  // Iniciar el juego
   const startGame = () => {
     const currentLevelData = initialState.levels[initialState.currentLevel];
     const currentChallengeData = currentLevelData.challenges[initialState.currentChallenge];
@@ -147,12 +188,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Validar si la palabra coincide con el patrón
   const checkWord = (word: string) => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     const challenge = currentLevel.challenges[gameState.currentChallenge];
     
-    // Verificar si la palabra ya fue encontrada correctamente
     if (gameState.correctWords.includes(word)) {
       setGameState(prevState => ({
         ...prevState,
@@ -164,7 +203,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     
-    // Verificar si la palabra es correcta
     if (challenge.correctWords.includes(word)) {
       const newCorrectWords = [...gameState.correctWords, word];
       const newPoints = gameState.totalPoints + 1;
@@ -180,18 +218,15 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         userInput: ''
       }));
     } else {
-      // La palabra no coincide con el patrón, analizar dónde está el error
       const pattern = new RegExp(challenge.pattern);
       let errorPosition = -1;
       let errorMessage = "Esta palabra no coincide con el patrón.";
       
-      // Identificar posible posición del error (simplificado)
       if (word.length > 0) {
         if (!word.startsWith(challenge.pattern.substring(1, 2))) {
           errorPosition = 0;
           errorMessage = "El inicio de la palabra no coincide con el patrón.";
         } else if (word.length > 1 && !pattern.test(word)) {
-          // Verificar problemas con vocales o consonantes específicas
           const patternParts = challenge.pattern.slice(1, -1).split('');
           for (let i = 0; i < word.length; i++) {
             if (patternParts[i] === '[aeiou]' && !/[aeiou]/.test(word[i])) {
@@ -203,7 +238,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         }
       }
       
-      // Guardar el intento incorrecto
       const newIncorrectAttempts = [...gameState.incorrectAttempts, word];
       
       setGameState(prevState => ({
@@ -218,7 +252,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Actualizar el input del usuario
   const setUserInput = (input: string) => {
     setGameState(prevState => ({
       ...prevState,
@@ -227,11 +260,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  // Pasar al siguiente desafío
   const nextChallenge = () => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     
-    // Verificar si hay más desafíos en el nivel actual
     if (gameState.currentChallenge < currentLevel.challenges.length - 1) {
       const nextChallengeIndex = gameState.currentChallenge + 1;
       const nextChallenge = currentLevel.challenges[nextChallengeIndex];
@@ -246,11 +277,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         remainingTime: nextChallenge.timeLimit
       }));
     } else {
-      // Nivel completado
       const hasEnoughPoints = gameState.totalPoints >= currentLevel.requiredPoints;
       
       if (hasEnoughPoints && gameState.currentLevel < gameState.levels.length - 1) {
-        // Avanzar al siguiente nivel
         const nextLevelIndex = gameState.currentLevel + 1;
         const nextLevel = gameState.levels[nextLevelIndex];
         
@@ -268,7 +297,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           remainingTime: nextLevel.challenges[0].timeLimit
         }));
       } else if (hasEnoughPoints) {
-        // Juego completado
         setGameState(prevState => ({
           ...prevState,
           gameStarted: false,
@@ -278,7 +306,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           }
         }));
       } else {
-        // No tiene suficientes puntos para avanzar
         setGameState(prevState => ({
           ...prevState,
           feedback: {
@@ -290,7 +317,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Reiniciar el nivel actual
   const resetLevel = () => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     
@@ -322,7 +348,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Hook para acceder al contexto
 export const useGame = () => {
   const context = useContext(GameContext);
   if (context === undefined) {
