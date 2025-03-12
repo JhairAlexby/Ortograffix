@@ -128,6 +128,166 @@ const initialLevels: Level[] = [
         possibleWords: ["gata", "geta", "gita", "gota", "guta"],
         correctWords: ["gata"],
         timeLimit: 60
+      },
+      {
+        id: 11,
+        pattern: "^d[aeiou]l[aeiou]$",
+        explanation: "Palabras que comienzan con 'd', siguen con una vocal, luego 'l' y terminan con una vocal",
+        possibleWords: ["dala", "dela", "dila", "dola", "dula"],
+        correctWords: ["dela"],
+        timeLimit: 60
+      },
+      {
+        id: 12,
+        pattern: "^f[aeiou]n[aeiou]$",
+        explanation: "Palabras que empiezan con 'f', siguen con una vocal, luego 'n', y terminan con una vocal",
+        possibleWords: ["fana", "fena", "fina", "fona", "funa"],
+        correctWords: ["fina"],
+        timeLimit: 60
+      },
+      {
+        id: 13,
+        pattern: "^p[aeiou]s[aeiou]$",
+        explanation: "Palabras que empiezan con 'p', siguen con una vocal, luego 's', y terminan con una vocal",
+        possibleWords: ["pasa", "pesa", "pisa", "posa", "pusa"],
+        correctWords: ["pasa"],
+        timeLimit: 60
+      },
+      {
+        id: 14,
+        pattern: "^m[aeiou]t[aeiou]$",
+        explanation: "Palabras que empiezan con 'm', siguen con una vocal, luego 't', y terminan con una vocal",
+        possibleWords: ["mata", "meta", "mita", "mota", "muta"],
+        correctWords: ["meta"],
+        timeLimit: 60
+      },
+      {
+        id: 15,
+        pattern: "^r[aeiou]p[aeiou]$",
+        explanation: "Palabras que empiezan con 'r', siguen con una vocal, luego 'p', y terminan con una vocal",
+        possibleWords: ["rapa", "repa", "ripa", "ropa", "rupa"],
+        correctWords: ["ropa"],
+        timeLimit: 60
+      },
+      {
+        id: 16,
+        pattern: "^p[aeiou]dr[aeiou]$",
+        explanation: "Palabras que empiezan con 'p', siguen con una vocal, luego 'dr' y terminan con una vocal",
+        possibleWords: ["padre", "pedra", "pidro", "podru", "pudri"],
+        correctWords: ["padre"],
+        timeLimit: 60
+      },
+      {
+        id: 17,
+        pattern: "^tr[aeiou]b[aeiou]$",
+        explanation: "Palabras que comienzan con 'tr', siguen con una vocal, luego 'b' y terminan con una vocal",
+        possibleWords: ["traba", "trebo", "tribu", "troba", "trubu"],
+        correctWords: ["traba"],
+        timeLimit: 60
+      },
+      {
+        id: 18,
+        pattern: "^gr[aeiou]p[aeiou]$",
+        explanation: "Palabras que comienzan con 'gr', siguen con una vocal, luego 'p' y terminan con una vocal",
+        possibleWords: ["grapa", "grepe", "gripi", "gropo", "grupu"],
+        correctWords: ["grapa"],
+        timeLimit: 60
+      },
+      {
+        id: 19,
+        pattern: "^br[aeiou]s[aeiou]$",
+        explanation: "Palabras que comienzan con 'br', siguen con una vocal, luego 's' y terminan con una vocal",
+        possibleWords: ["brasa", "brese", "brisi", "broso", "brusu"],
+        correctWords: ["brasa"],
+        timeLimit: 60
+      },
+      {
+        id: 20,
+        pattern: "^cl[aeiou]p[aeiou]$",
+        explanation: "Palabras que comienzan con 'cl', siguen con una vocal, luego 'p' y terminan con una vocal",
+        possibleWords: ["clapa", "clepe", "clipi", "clopo", "clupu"],
+        correctWords: ["clapa"],
+        timeLimit: 60
+      },
+      {
+        id: 21,
+        pattern: "^fl[aeiou]t[aeiou]$",
+        explanation: "Palabras que comienzan con 'fl', siguen con una vocal, luego 't' y terminan con una vocal",
+        possibleWords: ["flata", "flete", "fliti", "floto", "flutu"],
+        correctWords: ["flota"],
+        timeLimit: 60
+      },
+      {
+        id: 22,
+        pattern: "^tr[aeiou]n[aeiou]$",
+        explanation: "Palabras que comienzan con 'tr', siguen con una vocal, luego 'n' y terminan con una vocal",
+        possibleWords: ["trana", "trene", "trini", "trono", "trunu"],
+        correctWords: ["trono"],
+        timeLimit: 60
+      },
+      {
+        id: 23,
+        pattern: "^fr[aeiou]g[aeiou]$",
+        explanation: "Palabras que comienzan con 'fr', siguen con una vocal, luego 'g' y terminan con una vocal",
+        possibleWords: ["fraga", "frege", "frigi", "frogo", "frugu"],
+        correctWords: ["fraga"],
+        timeLimit: 60
+      },
+      {
+        id: 24,
+        pattern: "^pl[aeiou]m[aeiou]$",
+        explanation: "Palabras que comienzan con 'pl', siguen con una vocal, luego 'm' y terminan con una vocal",
+        possibleWords: ["plama", "pleme", "plimi", "plomo", "plumu"],
+        correctWords: ["plomo"],
+        timeLimit: 60
+      },
+      {
+        id: 25,
+        pattern: "^dr[aeiou]p[aeiou]$",
+        explanation: "Palabras que comienzan con 'dr', siguen con una vocal, luego 'p' y terminan con una vocal",
+        possibleWords: ["drapa", "dripe", "drapo", "drope", "drupa"],
+        correctWords: ["drape"],
+        timeLimit: 60
+      },
+      {
+        id: 26,
+        pattern: "^bl[aeiou]s[aeiou]$",
+        explanation: "Palabras que comienzan con 'bl', siguen con una vocal, luego 's' y terminan con una vocal",
+        possibleWords: ["blasa", "blese", "bliso", "bloso", "blusa"],
+        correctWords: ["blusa"],
+        timeLimit: 60
+      },
+      {
+        id: 27,
+        pattern: "^gr[aeiou]m[aeiou]$",
+        explanation: "Palabras que comienzan con 'gr', siguen con una vocal, luego 'm' y terminan con una vocal",
+        possibleWords: ["grama", "greme", "grimi", "gromo", "grumu"],
+        correctWords: ["grama"],
+        timeLimit: 60
+      },
+      {
+        id: 28,
+        pattern: "^sn[aeiou]k[aeiou]$",
+        explanation: "Palabras que comienzan con 'sn', siguen con una vocal, luego 'k' y terminan con una vocal",
+        possibleWords: ["snake", "sneke", "sniko", "snaka", "snuku"],
+        correctWords: ["snake"],
+        timeLimit: 60
+      },
+      {
+        id: 29,
+        pattern: "^tw[aeiou]s[aeiou]$",
+        explanation: "Palabras que comienzan con 'tw', siguen con una vocal, luego 's' y terminan con una vocal",
+        possibleWords: ["twasa", "twese", "twiso", "twoso", "twusa"],
+        correctWords: ["twist"],
+        timeLimit: 60
+      },
+      {
+        id: 30,
+        pattern: "^sc[aeiou]t[aeiou]$",
+        explanation: "Palabras que comienzan con 'sc', siguen con una vocal, luego 't' y terminan con una vocal",
+        possibleWords: ["scata", "scete", "sciti", "scoto", "scutu"],
+        correctWords: ["scota"],
+        timeLimit: 60
       }
     ],
     requiredPoints: 6 // puntos para ganar (cambiar al mimso numero de desafios) 
