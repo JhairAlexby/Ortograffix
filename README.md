@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# El Laboratorio de Palabras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## 📋 Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+"El Laboratorio de Palabras" es una aplicación educativa donde los usuarios ayudan al profesor Letralocas a completar experimentos con palabras mágicas. A través de una interfaz interactiva y visualmente atractiva, los usuarios resolverán desafíos basados en patrones lingüísticos, mejorando sus habilidades de lectura y comprensión.
 
-## Expanding the ESLint configuration
+## ✨ Características
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Interfaz interactiva y divertida con temática de laboratorio
+- Múltiples niveles con desafíos progresivos
+- Sistema de puntos para seguir tu progreso
+- Retroalimentación inmediata sobre tus respuestas
+- Visualización clara de patrones lingüísticos
+- Diseño responsivo que funciona en diferentes dispositivos
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🚀 Tecnologías
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Este proyecto utiliza las siguientes tecnologías:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Lucide React](https://lucide.dev/) (para iconos)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🛠️ Instalación
+
+Sigue estos pasos para configurar el proyecto en tu entorno local:
+
+1. Clona el repositorio:
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abre tu navegador y visita `http://localhost:5173` para ver la aplicación en funcionamiento.
+
+## 📝 Cómo jugar
+
+1. En la pantalla inicial, haz clic en "¡Comenzar la Aventura!" para iniciar el juego.
+2. En cada desafío, se te presentará una "fórmula mágica" que representa un patrón de letras.
+3. Tu tarea es encontrar palabras que coincidan con ese patrón.
+4. Escribe tu respuesta en el campo de texto y presiona Enter para verificarla.
+5. Si aciertas, ganarás puntos que te ayudarán a avanzar.
+6. Completa los desafíos para pasar al siguiente nivel.
+
+### Guía de patrones:
+
+- `^` indica el inicio de la palabra
+- `[aeiou]` representa cualquier vocal (a, e, i, o, u)
+- `$` indica el final de la palabra
+
