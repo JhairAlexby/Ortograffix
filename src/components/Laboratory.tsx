@@ -40,10 +40,10 @@ const Laboratory: React.FC = () => {
                 <Beaker className="h-10 w-10 text-white" />
               </div>
             </div>
-            <CardTitle className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-600">
+            <CardTitle className="text-3xl sm:text-4xl font-bold text-blue-700">
               El Laboratorio de Palabras
             </CardTitle>
-            <CardDescription className="text-white/80">
+            <CardDescription className="text-gray-700 font-medium">
               Una aventura mágica para aprender jugando
             </CardDescription>
           </CardHeader>
@@ -51,34 +51,34 @@ const Laboratory: React.FC = () => {
           <CardContent className="px-6 pb-6 pt-0">
             <div className="grid sm:grid-cols-2 gap-8 mb-8">
               <div className="flex justify-center">
-                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                <div className="bg-white/30 backdrop-blur-sm p-6 rounded-xl">
                   <ScientistCharacter animate={false} size="large" mood="happy" />
                 </div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                <h2 className="text-xl font-semibold text-white mb-3 flex items-center">
+              <div className="bg-white/30 backdrop-blur-sm p-6 rounded-xl">
+                <h2 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
                   <Book className="inline mr-2 h-5 w-5" /> Bienvenido
                 </h2>
-                <p className="text-white/90 mb-4">
+                <p className="text-gray-700 mb-4">
                   ¡Hola! Soy el profesor Letralocas y necesito tu ayuda para completar mis experimentos con palabras mágicas.
                 </p>
-                <p className="text-white/90">
+                <p className="text-gray-700">
                   Juntos descifraremos fórmulas mágicas y crearemos las palabras correctas para que mis experimentos sean todo un éxito.
                 </p>
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
-              <Card className="bg-white/10 backdrop-blur-sm border-0">
+              <Card className="bg-white/30 backdrop-blur-sm border-0">
                 <CardHeader className="pb-2">
                   <div className="flex items-center mb-1">
-                    <Brain className="h-5 w-5 mr-2 text-blue-300" />
-                    <CardTitle className="text-lg text-white">¿Cómo jugar?</CardTitle>
+                    <Brain className="h-5 w-5 mr-2 text-blue-700" />
+                    <CardTitle className="text-lg text-gray-800">¿Cómo jugar?</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-white/80 text-sm space-y-2">
+                  <ul className="text-gray-700 text-sm space-y-2">
                     <li className="flex gap-2">
                       <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">1</span>
                       <span>Te mostraré una <strong>fórmula mágica</strong> que describe un patrón de letras.</span>
@@ -95,25 +95,25 @@ const Laboratory: React.FC = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/10 backdrop-blur-sm border-0">
+              <Card className="bg-white/30 backdrop-blur-sm border-0">
                 <CardHeader className="pb-2">
                   <div className="flex items-center mb-1">
-                    <Star className="h-5 w-5 mr-2 text-yellow-300" />
-                    <CardTitle className="text-lg text-white">Guía de Patrones</CardTitle>
+                    <Star className="h-5 w-5 mr-2 text-yellow-600" />
+                    <CardTitle className="text-lg text-gray-800">Guía de Patrones</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-white/80 text-sm space-y-2">
+                  <ul className="text-gray-700 text-sm space-y-2">
                     <li className="flex items-start gap-2">
-                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5">^</Badge>
+                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5 text-blue-900">^</Badge>
                       <span>Indica el <strong>inicio</strong> de la palabra.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5">[aeiou]</Badge>
+                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5 text-blue-900">[aeiou]</Badge>
                       <span>Representa <strong>cualquier vocal</strong> (a, e, i, o, u).</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5">$</Badge>
+                      <Badge className="bg-blue-500/50 border-0 shrink-0 mt-0.5 text-blue-900">$</Badge>
                       <span>Indica el <strong>final</strong> de la palabra.</span>
                     </li>
                   </ul>
