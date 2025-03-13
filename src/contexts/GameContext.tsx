@@ -54,7 +54,7 @@ const initialLevels: Level[] = [
         pattern: "^c[aeiou]sa$",
         explanation: "Palabras que empiezan con 'c', siguen con una vocal, luego 's' y terminan con 'a'",
         possibleWords: ["casa", "cesa", "cisa", "cosa", "cusa"],
-        correctWords: ["casa"],
+        correctWords: ["casa", "cesa", "cisa", "cosa", "cusa"],
         timeLimit: 60
       },
       {
@@ -62,7 +62,7 @@ const initialLevels: Level[] = [
         pattern: "^m[aeiou]r[aeiou]$",
         explanation: "Palabras que empiezan con 'm', siguen con una vocal, luego 'r', y terminan con una vocal",
         possibleWords: ["mara", "mare", "mari", "maro", "maru", "mera", "mere", "meri", "mero", "meru", "mira", "mire", "miri", "miro", "miru", "mora", "more", "mori", "moro", "moru", "mura", "mure", "muri", "muro", "muru"],
-        correctWords: ["mira"],
+        correctWords: ["mara", "mare", "mari", "maro", "maru", "mera", "mere", "meri", "mero", "meru", "mira", "mire", "miri", "miro", "miru", "mora", "more", "mori", "moro", "moru", "mura", "mure", "muri", "muro", "muru"],
         timeLimit: 60
       },
       {
@@ -70,7 +70,7 @@ const initialLevels: Level[] = [
         pattern: "^p[aeiou]t[aeiou]$",
         explanation: "Palabras que empiezan con 'p', siguen con una vocal, luego 't', y terminan con una vocal",
         possibleWords: ["pata", "pate", "pati", "pato", "patu", "peta", "pete", "peti", "peto", "petu", "pita", "pite", "piti", "pito", "pitu", "pota", "pote", "poti", "poto", "potu", "puta", "pute", "puti", "puto", "putu"],
-        correctWords: ["pata"],
+        correctWords: ["pata", "pate", "pati", "pato", "patu", "peta", "pete", "peti", "peto", "petu", "pita", "pite", "piti", "pito", "pitu", "pota", "pote", "poti", "poto", "potu", "puta", "pute", "puti", "puto", "putu"],
         timeLimit: 60
       },
       {
@@ -78,7 +78,7 @@ const initialLevels: Level[] = [
         pattern: "^b[aeiou]ll[aeiou]$",
         explanation: "Palabras que empiezan con 'b', siguen con una vocal, luego 'll', y terminan con una vocal",
         possibleWords: ["balla", "balle", "balli", "ballo", "ballu", "bella", "belle", "belli", "bello", "bellu", "billa", "bille", "billi", "billo", "billu", "bolla", "bolle", "bolli", "bollo", "bollu", "bulla", "bulle", "bulli", "bullo", "bullu"],
-        correctWords: ["bella"],
+        correctWords: ["balla", "balle", "balli", "ballo", "ballu", "bella", "belle", "belli", "bello", "bellu", "billa", "bille", "billi", "billo", "billu", "bolla", "bolle", "bolli", "bollo", "bollu", "bulla", "bulle", "bulli", "bullo", "bullu"],
         timeLimit: 60
       },
       {
@@ -86,7 +86,7 @@ const initialLevels: Level[] = [
         pattern: "^t[aeiou]c[aeiou]$",
         explanation: "Palabras que empiezan con 't', siguen con una vocal, luego 'c', y terminan con una vocal",
         possibleWords: ["taca", "tace", "taci", "taco", "tacu", "teca", "tece", "teci", "teco", "tecu", "tica", "tice", "tici", "tico", "ticu", "toca", "toce", "toci", "toco", "tocu", "tuca", "tuce", "tuci", "tuco", "tucu"],
-        correctWords: ["toca"],
+        correctWords:  ["taca", "tace", "taci", "taco", "tacu", "teca", "tece", "teci", "teco", "tecu", "tica", "tice", "tici", "tico", "ticu", "toca", "toce", "toci", "toco", "tocu", "tuca", "tuce", "tuci", "tuco", "tucu"],
         timeLimit: 60
       },
       {
@@ -94,7 +94,7 @@ const initialLevels: Level[] = [
         pattern: "^l[aeiou]p[aeiou]$",
         explanation: "Palabras que empiezan con 'l', siguen con una vocal, luego 'p', y terminan con una vocal",
         possibleWords: ["lapa", "lape", "lapi", "lapo", "lapu", "lepa", "lepe", "lepi", "lepo", "lepu", "lipa", "lipe", "lipi", "lipo", "lipu", "lopa", "lope", "lopi", "lopo", "lopu", "lupa", "lupe", "lupi", "lupo", "lupu"],
-        correctWords: ["lupa"],
+        correctWords: ["lapa", "lape", "lapi", "lapo", "lapu", "lepa", "lepe", "lepi", "lepo", "lepu", "lipa", "lipe", "lipi", "lipo", "lipu", "lopa", "lope", "lopi", "lopo", "lopu", "lupa", "lupe", "lupi", "lupo", "lupu"],
         timeLimit: 60
       },
       {
@@ -102,7 +102,7 @@ const initialLevels: Level[] = [
         pattern: "^n[aeiou]v[aeiou]$",
         explanation: "Palabras que empiezan con 'n', siguen con una vocal, luego 'v', y terminan con una vocal",
         possibleWords: ["nava", "nave", "navi", "navo", "navu", "neva", "neve", "nevi", "nevo", "nevu", "niva", "nive", "nivi", "nivo", "nivu", "nova", "nove", "novi", "novo", "novu", "nuva", "nuve", "nuvi", "nuvo", "nuvu"],
-        correctWords: ["nave"],
+        correctWords: ["nava", "nave", "navi", "navo", "navu", "neva", "neve", "nevi", "nevo", "nevu", "niva", "nive", "nivi", "nivo", "nivu", "nova", "nove", "novi", "novo", "novu", "nuva", "nuve", "nuvi", "nuvo", "nuvu"],
         timeLimit: 60
       },
       {
@@ -110,7 +110,7 @@ const initialLevels: Level[] = [
         pattern: "^s[aeiou]l[aeiou]$",
         explanation: "Palabras que empiezan con 's', siguen con una vocal, luego 'l', y terminan con una vocal",
         possibleWords: ["sala", "sale", "sali", "salo", "salu", "sela", "sele", "seli", "selo", "selu", "sila", "sile", "sili", "silo", "silu", "sola", "sole", "soli", "solo", "solu", "sula", "sule", "suli", "sulo", "sulu"],
-        correctWords: ["sala"],
+        correctWords: ["sala", "sale", "sali", "salo", "salu", "sela", "sele", "seli", "selo", "selu", "sila", "sile", "sili", "silo", "silu", "sola", "sole", "soli", "solo", "solu", "sula", "sule", "suli", "sulo", "sulu"],
         timeLimit: 60
       },
       {
@@ -118,7 +118,7 @@ const initialLevels: Level[] = [
         pattern: "^r[aeiou]m[aeiou]$",
         explanation: "Palabras que empiezan con 'r', siguen con una vocal, luego 'm', y terminan con una vocal",
         possibleWords: ["rama", "rame", "rami", "ramo", "ramu", "rema", "reme", "remi", "remo", "remu", "rima", "rime", "rimi", "rimo", "rimu", "roma", "rome", "romi", "romo", "romu", "ruma", "rume", "rumi", "rumo", "rumu"],
-        correctWords: ["rama"],
+        correctWords: ["rama", "rame", "rami", "ramo", "ramu", "rema", "reme", "remi", "remo", "remu", "rima", "rime", "rimi", "rimo", "rimu", "roma", "rome", "romi", "romo", "romu", "ruma", "rume", "rumi", "rumo", "rumu"],
         timeLimit: 60
       },
       {
@@ -126,7 +126,7 @@ const initialLevels: Level[] = [
         pattern: "^g[aeiou]t[aeiou]$",
         explanation: "Palabras que empiezan con 'g', siguen con una vocal, luego 't', y terminan con una vocal",
         possibleWords: ["gata", "gate", "gati", "gato", "gatu", "geta", "gete", "geti", "geto", "getu", "gita", "gite", "giti", "gito", "gitu", "gota", "gote", "goti", "goto", "gotu", "guta", "gute", "guti", "guto", "gutu"],
-        correctWords: ["gata"],
+        correctWords: ["gata", "gate", "gati", "gato", "gatu", "geta", "gete", "geti", "geto", "getu", "gita", "gite", "giti", "gito", "gitu", "gota", "gote", "goti", "goto", "gotu", "guta", "gute", "guti", "guto", "gutu"],
         timeLimit: 60
       },
       {
@@ -214,7 +214,7 @@ const initialLevels: Level[] = [
         pattern: "^fl[aeiou]t[aeiou]$",
         explanation: "Palabras que comienzan con 'fl', siguen con una vocal, luego 't' y terminan con una vocal",
         possibleWords: ["flata", "flate", "flati", "flato", "flatu", "fleta", "flete", "fleti", "fleto", "fletu", "flita", "flite", "fliti", "flito", "flitu", "flota", "flote", "floti", "floto", "flotu", "fluta", "flute", "fluti", "fluto", "flutu"],
-        correctWords: ["flota"],
+        correctWords: ["flata", "flate", "flati", "flato", "flatu", "fleta", "flete", "fleti", "fleto", "fletu", "flita", "flite", "fliti", "flito", "flitu", "flota", "flote", "floti", "floto", "flotu", "fluta", "flute", "fluti", "fluto", "flutu"],
         timeLimit: 60
       },
       {
@@ -222,7 +222,7 @@ const initialLevels: Level[] = [
         pattern: "^tr[aeiou]n[aeiou]$",
         explanation: "Palabras que comienzan con 'tr', siguen con una vocal, luego 'n' y terminan con una vocal",
         possibleWords: ["trana", "trane", "trani", "trano", "tranu", "trena", "trene", "treni", "treno", "trenu", "trina", "trine", "trini", "trino", "trinu", "trona", "trone", "troni", "trono", "tronu", "truna", "trune", "truni", "truno", "trunu"],
-        correctWords: ["trono"],
+        correctWords: ["trana", "trane", "trani", "trano", "tranu", "trena", "trene", "treni", "treno", "trenu", "trina", "trine", "trini", "trino", "trinu", "trona", "trone", "troni", "trono", "tronu", "truna", "trune", "truni", "truno", "trunu"],
         timeLimit: 60
       },
       {
@@ -230,7 +230,7 @@ const initialLevels: Level[] = [
         pattern: "^fr[aeiou]g[aeiou]$",
         explanation: "Palabras que comienzan con 'fr', siguen con una vocal, luego 'g' y terminan con una vocal",
         possibleWords: ["fraga", "frage", "fragi", "frago", "fragu", "frega", "frege", "fregi", "frego", "fregu", "friga", "frige", "frigi", "frigo", "frigu", "froga", "froge", "frogi", "frogo", "frogu", "fruga", "fruge", "frugi", "frugo", "frugu"],
-        correctWords: ["fraga"],
+        correctWords: ["fraga", "frage", "fragi", "frago", "fragu", "frega", "frege", "fregi", "frego", "fregu", "friga", "frige", "frigi", "frigo", "frigu", "froga", "froge", "frogi", "frogo", "frogu", "fruga", "fruge", "frugi", "frugo", "frugu"],
         timeLimit: 60
       },
       {
@@ -238,7 +238,7 @@ const initialLevels: Level[] = [
         pattern: "^pl[aeiou]m[aeiou]$",
         explanation: "Palabras que comienzan con 'pl', siguen con una vocal, luego 'm' y terminan con una vocal",
         possibleWords: ["plama", "plame", "plami", "plamo", "plamu", "plema", "pleme", "plemi", "plemo", "plemu", "plima", "plime", "plimi", "plimo", "plimu", "ploma", "plome", "plomi", "plomo", "plomu", "pluma", "plume", "plumi", "plumo", "plumu"],
-        correctWords: ["plomo"],
+        correctWords: ["plama", "plame", "plami", "plamo", "plamu", "plema", "pleme", "plemi", "plemo", "plemu", "plima", "plime", "plimi", "plimo", "plimu", "ploma", "plome", "plomi", "plomo", "plomu", "pluma", "plume", "plumi", "plumo", "plumu"],
         timeLimit: 60
       },
       {
@@ -246,7 +246,7 @@ const initialLevels: Level[] = [
         pattern: "^dr[aeiou]p[aeiou]$",
         explanation: "Palabras que comienzan con 'dr', siguen con una vocal, luego 'p' y terminan con una vocal",
         possibleWords: ["drapa", "drape", "drapi", "drapo", "drapu", "drepa", "drepe", "drepi", "drepo", "drepu", "dripa", "dripe", "dripi", "dripo", "dripu", "dropa", "drope", "dropi", "dropo", "dropu", "drupa", "drupe", "drupi", "drupo", "drupu"],
-        correctWords: ["drape"],
+        correctWords: ["drapa", "drape", "drapi", "drapo", "drapu", "drepa", "drepe", "drepi", "drepo", "drepu", "dripa", "dripe", "dripi", "dripo", "dripu", "dropa", "drope", "dropi", "dropo", "dropu", "drupa", "drupe", "drupi", "drupo", "drupu"],
         timeLimit: 60
       },
       {
@@ -254,7 +254,7 @@ const initialLevels: Level[] = [
         pattern: "^bl[aeiou]s[aeiou]$",
         explanation: "Palabras que comienzan con 'bl', siguen con una vocal, luego 's' y terminan con una vocal",
         possibleWords: ["blasa", "blase", "blasi", "blaso", "blasu", "blesa", "blese", "blesi", "bleso", "blesu", "blisa", "blise", "blisi", "bliso", "blisu", "blosa", "blose", "blosi", "bloso", "blosu", "blusa", "bluse", "blusi", "bluso", "blusu"],
-        correctWords: ["blusa"],
+        correctWords: ["blasa", "blase", "blasi", "blaso", "blasu", "blesa", "blese", "blesi", "bleso", "blesu", "blisa", "blise", "blisi", "bliso", "blisu", "blosa", "blose", "blosi", "bloso", "blosu", "blusa", "bluse", "blusi", "bluso", "blusu"],
         timeLimit: 60
       },
       {
@@ -262,7 +262,7 @@ const initialLevels: Level[] = [
         pattern: "^gr[aeiou]m[aeiou]$",
         explanation: "Palabras que comienzan con 'gr', siguen con una vocal, luego 'm' y terminan con una vocal",
         possibleWords: ["grama", "grame", "grami", "gramo", "gramu", "grema", "greme", "gremi", "gremo", "gremu", "grima", "grime", "grimi", "grimo", "grimu", "groma", "grome", "gromi", "gromo", "gromu", "gruma", "grume", "grumi", "grumo", "grumu"],
-        correctWords: ["grama"],
+        correctWords: ["grama", "grame", "grami", "gramo", "gramu", "grema", "greme", "gremi", "gremo", "gremu", "grima", "grime", "grimi", "grimo", "grimu", "groma", "grome", "gromi", "gromo", "gromu", "gruma", "grume", "grumi", "grumo", "grumu"],
         timeLimit: 60
       },
       {
@@ -270,7 +270,7 @@ const initialLevels: Level[] = [
         pattern: "^sn[aeiou]k[aeiou]$",
         explanation: "Palabras que comienzan con 'sn', siguen con una vocal, luego 'k' y terminan con una vocal",
         possibleWords: ["snaka", "snake", "snaki", "snako", "snaku", "sneka", "sneke", "sneki", "sneko", "sneku", "snika", "snike", "sniki", "sniko", "sniku", "snoka", "snoke", "snoki", "snoko", "snoku", "snuka", "snuke", "snuki", "snuko", "snuku"],
-        correctWords: ["snake"],
+        correctWords: ["snaka", "snake", "snaki", "snako", "snaku", "sneka", "sneke", "sneki", "sneko", "sneku", "snika", "snike", "sniki", "sniko", "sniku", "snoka", "snoke", "snoki", "snoko", "snoku", "snuka", "snuke", "snuki", "snuko", "snuku"],
         timeLimit: 60
       },
       {
@@ -278,7 +278,7 @@ const initialLevels: Level[] = [
         pattern: "^tw[aeiou]s[aeiou]$",
         explanation: "Palabras que comienzan con 'tw', siguen con una vocal, luego 's' y terminan con una vocal",
         possibleWords: ["twasa", "twase", "twasi", "twaso", "twasu", "twesa", "twese", "twesi", "tweso", "twesu", "twisa", "twise", "twisi", "twiso", "twisu", "twosa", "twose", "twosi", "twoso", "twosu", "twusa", "twuse", "twusi", "twuso", "twusu"],
-        correctWords: ["twist"],
+        correctWords: ["twasa", "twase", "twasi", "twaso", "twasu", "twesa", "twese", "twesi", "tweso", "twesu", "twisa", "twise", "twisi", "twiso", "twisu", "twosa", "twose", "twosi", "twoso", "twosu", "twusa", "twuse", "twusi", "twuso", "twusu"],
         timeLimit: 60
       },
       {
@@ -286,7 +286,7 @@ const initialLevels: Level[] = [
         pattern: "^sc[aeiou]t[aeiou]$",
         explanation: "Palabras que comienzan con 'sc', siguen con una vocal, luego 't' y terminan con una vocal",
         possibleWords: ["scata", "scate", "scati", "scato", "scatu", "sceta", "scete", "sceti", "sceto", "scetu", "scita", "scite", "sciti", "scito", "scitu", "scota", "scote", "scoti", "scoto", "scotu", "scuta", "scute", "scuti", "scuto", "scutu"],
-        correctWords: ["scota"],
+        correctWords: ["scata", "scate", "scati", "scato", "scatu", "sceta", "scete", "sceti", "sceto", "scetu", "scita", "scite", "sciti", "scito", "scitu", "scota", "scote", "scoti", "scoto", "scotu", "scuta", "scute", "scuti", "scuto", "scutu"],
         timeLimit: 60
       }
     ],
