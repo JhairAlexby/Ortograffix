@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Beaker, Star, Brain, Book, PlayCircle, RefreshCw } from "lucide-react";
+import { Beaker, Star, Brain, Book, PlayCircle, RefreshCw, Home } from "lucide-react";
 
 const Laboratory: React.FC = () => {
   const { gameState, startGame, resetGame } = useGame();
@@ -32,6 +32,11 @@ const Laboratory: React.FC = () => {
 
   const handleRestartGame = () => {
     resetGame();
+  };
+
+  const handleReturnToMenu = () => {
+    resetGame();
+    setShowIntro(true);
   };
 
   const renderGameOver = () => {
@@ -72,7 +77,7 @@ const Laboratory: React.FC = () => {
                 </p>
               </div>
 
-              <div className="text-center">
+              <div className="flex justify-center space-x-4">
                 <Button
                   onClick={handleRestartGame}
                   variant="glow"
@@ -81,6 +86,16 @@ const Laboratory: React.FC = () => {
                 >
                   <RefreshCw className="h-5 w-5" />
                   ¡Reiniciar Experimentos!
+                </Button>
+                
+                <Button
+                  onClick={handleReturnToMenu}
+                  variant="outline"
+                  size="lg"
+                  className="gap-2"
+                >
+                  <Home className="h-5 w-5" />
+                  Volver al Menú
                 </Button>
               </div>
             </CardContent>
@@ -227,6 +242,16 @@ const Laboratory: React.FC = () => {
                 <Star className="h-3 w-3 mr-1 text-yellow-400" />
                 <span>Puntos: {gameState.totalPoints}/{currentLevel.requiredPoints}</span>
               </Badge>
+              
+              <Button
+                onClick={handleReturnToMenu}
+                variant="ghost"
+                size="sm"
+                className="gap-1"
+              >
+                <Home className="h-4 w-4" />
+                <span className="hidden sm:inline">Volver al Menú</span>
+              </Button>
             </div>
           </header>
 
@@ -306,6 +331,17 @@ const Laboratory: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="sm:hidden fixed bottom-4 right-4">
+            <Button
+              onClick={handleReturnToMenu}
+              variant="secondary"
+              size="sm"
+              className="shadow-lg rounded-full h-12 w-12 p-0 flex items-center justify-center"
+            >
+              <Home className="h-5 w-5" />
+            </Button>
           </div>
         </div>
       </div>
