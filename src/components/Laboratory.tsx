@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGame } from "@/contexts/GameContext";
 import Challenge from "./Challenge";
 import ScientistCharacter from "./common/ScientistCharacter";
-import Flask from "./laboratory/Flask";
+import ExperimentPath from "./laboratory/ExperimentPath";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -220,6 +220,7 @@ const Laboratory: React.FC = () => {
   const renderLaboratory = () => {
     const currentLevel = gameState.levels[gameState.currentLevel];
     const challenge = currentLevel.challenges[gameState.currentChallenge];
+    const completedChallenges = Array.from({ length: gameState.currentChallenge }, (_, i) => i);
 
     return (
       <div className="laboratory-pattern text-foreground w-full">
@@ -257,7 +258,9 @@ const Laboratory: React.FC = () => {
 
           <Separator className="mb-6" />
 
+          {/* Contenedor principal */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
+            {/* Columna izquierda - Personaje y mensaje */}
             <div className="lg:col-span-1 flex flex-col items-center justify-start gap-4 w-full">
               <Card className="w-full bg-primary/5 backdrop-blur-sm border-primary/10">
                 <CardContent className="p-6 flex flex-col items-center">
@@ -295,44 +298,52 @@ const Laboratory: React.FC = () => {
                 </CardContent>
               </Card>
 
-              <div className="w-full lg:hidden">
-                <h3 className="text-sm font-medium mb-3 text-muted-foreground">Experimentos:</h3>
-                <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
-                  {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
-                    <div key={c.id} className="flex justify-center">
-                      <Flask
-                        active={index === gameState.currentChallenge}
-                        completed={index < gameState.currentChallenge}
-                        formula={c.pattern}
-                        color={index % 2 === 0 ? "blue" : "purple"}
-                      />
-                    </div>
-                  ))}
+              {/* Detalles del experimento actual (solo móvil) */}
+              <div className="w-full lg:hidden bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <Beaker className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold">Experimento actual</h3>
+                    <p className="text-xs text-gray-600">Desafío {gameState.currentChallenge + 1} de {currentLevel.challenges.length}</p>
+                  </div>
+                </div>
+                <div className="p-2 bg-gray-100/30 rounded text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span>Patrón: <code>{challenge.pattern}</code></span>
+                  </div>
                 </div>
               </div>
             </div>
 
+            {/* Columna derecha - Desafío actual */}
             <div className="lg:col-span-3 w-full">
               <Challenge />
             </div>
           </div>
 
-          <div className="hidden lg:block mt-8">
-            <h3 className="text-sm font-medium mb-4 text-muted-foreground">Experimentos en progreso:</h3>
-            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-              {gameState.levels[gameState.currentLevel].challenges.map((c, index) => (
-                <div key={c.id} className="flex justify-center">
-                  <Flask
-                    active={index === gameState.currentChallenge}
-                    completed={index < gameState.currentChallenge}
-                    formula={c.pattern}
-                    color={index % 2 === 0 ? "blue" : "purple"}
-                  />
-                </div>
-              ))}
+          {/* Nueva visualización de experimentos */}
+          <div className="mt-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-medium flex items-center gap-2">
+                <Beaker className="h-5 w-5 text-blue-500" />
+                <span>Mapa de Experimentos</span>
+              </h3>
+              <Badge variant="outline" className="bg-blue-500/10">
+                <span>Progreso: {Math.round((gameState.currentChallenge / currentLevel.challenges.length) * 100)}%</span>
+              </Badge>
             </div>
+            
+            <ExperimentPath
+              totalExperiments={currentLevel.challenges.length}
+              currentExperiment={gameState.currentChallenge}
+              completedExperiments={completedChallenges}
+            />
           </div>
 
+          {/* Botón para volver al menú en dispositivos móviles (fijo en la parte inferior) */}
           <div className="sm:hidden fixed bottom-4 right-4">
             <Button
               onClick={handleReturnToMenu}
@@ -348,6 +359,7 @@ const Laboratory: React.FC = () => {
     );
   };
 
+  // Determinar qué renderizar basado en los estados
   let content;
   if (showIntro) {
     content = renderIntro();

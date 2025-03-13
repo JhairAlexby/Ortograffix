@@ -292,7 +292,7 @@ const initialLevels: Level[] = [
         timeLimit: 60
       }
     ],
-    requiredPoints: 6 // puntos para ganar (cambiar al mimso numero de desafios) 
+    requiredPoints: 30 // puntos para ganar (cambiar al mimso numero de desafios) 
   }
 ];
 
