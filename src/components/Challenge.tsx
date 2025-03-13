@@ -71,7 +71,10 @@ const Challenge: React.FC = () => {
         />
       </div>
 
-      <PatternVisualizer pattern={challenge.pattern} />
+      <PatternVisualizer 
+        pattern={challenge.pattern} 
+        explanation={challenge.explanation}
+      />
 
       <Card className="overflow-hidden">
         <CardContent className="p-4">

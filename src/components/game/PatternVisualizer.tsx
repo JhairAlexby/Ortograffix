@@ -7,10 +7,13 @@ import { Separator } from "@/components/ui/separator";
 
 interface PatternVisualizerProps {
   pattern: string;
+  explanation?: string;
 }
 
-const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ pattern }) => {
-  // Función para renderizar el patrón de manera visual
+const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ 
+  pattern, 
+  explanation 
+}) => {
   const renderPatternParts = () => {
     if (pattern === "^c[aeiou]sa$") {
       return (
@@ -376,7 +379,6 @@ const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ pattern }) => {
       );
     }
 
-    // Renderizado genérico para patrones no específicos
     return (
       <div className="flex items-center justify-center py-4">
         <div className="rounded-md border border-border bg-card px-4 py-3 font-mono text-lg">
@@ -386,8 +388,11 @@ const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ pattern }) => {
     );
   };
 
-  // Función para obtener la explicación del patrón
   const getPatternExplanation = () => {
+    if (explanation) {
+      return explanation;
+    }
+
     const explanations: Record<string, string> = {
       "^c[aeiou]sa$": "Este patrón busca palabras de 4 letras que empiezan con 'c', siguen con una vocal, luego 's' y terminan con 'a'.",
       "^m[aeiou]r[aeiou]$": "Este patrón busca palabras de 4 letras que empiezan con 'm', siguen con una vocal, luego 'r', y terminan con una vocal.",
