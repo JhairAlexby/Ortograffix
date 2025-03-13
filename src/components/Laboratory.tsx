@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Beaker, Star, Brain, Book, PlayCircle } from "lucide-react";
+import { Beaker, Star, Brain, Book, PlayCircle, RefreshCw } from "lucide-react";
 
 const Laboratory: React.FC = () => {
-  const { gameState, startGame } = useGame();
+  const { gameState, startGame, resetGame } = useGame();
   const [showIntro, setShowIntro] = useState(true);
   const [animateScientist, setAnimateScientist] = useState(false);
 
@@ -28,6 +28,66 @@ const Laboratory: React.FC = () => {
   const handleStartGame = () => {
     setShowIntro(false);
     startGame();
+  };
+
+  const handleRestartGame = () => {
+    resetGame();
+  };
+
+  const renderGameOver = () => {
+    return (
+      <div className="w-full">
+        <div className="container max-w-5xl mx-auto px-4 pt-8 pb-16 flex items-center justify-center">
+          <Card className="magical-pattern shadow-xl border-none overflow-hidden w-full">
+            <CardHeader className="text-center pb-2">
+              <div className="w-20 h-20 mx-auto bg-white rounded-full p-1 shadow-lg mb-2">
+                <div className="w-full h-full rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center">
+                  <Beaker className="h-10 w-10 text-white" />
+                </div>
+              </div>
+              <CardTitle className="text-3xl sm:text-4xl font-bold text-red-700">
+                ¡Experimento Fallido!
+              </CardTitle>
+              <CardDescription className="text-gray-700 font-medium">
+                Buen intento, pero se agotó el tiempo
+              </CardDescription>
+            </CardHeader>
+
+            <CardContent className="px-6 pb-6 pt-0">
+              <div className="flex justify-center mb-8">
+                <div className="bg-white/30 backdrop-blur-sm p-6 rounded-xl">
+                  <ScientistCharacter animate={false} size="large" mood="confused" />
+                </div>
+              </div>
+              
+              <div className="bg-white/30 backdrop-blur-sm p-6 rounded-xl mb-8">
+                <h2 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                  <Book className="inline mr-2 h-5 w-5" /> Mensaje del Profesor
+                </h2>
+                <p className="text-gray-700 mb-4">
+                  {gameState.feedback?.message || "¡Oh no! No pudiste completar el experimento a tiempo. El profesor Letralocas necesita tu ayuda para completar todos los desafíos."}
+                </p>
+                <p className="text-gray-700">
+                  No te preocupes, ¡la ciencia se basa en intentarlo una y otra vez! Vamos a limpiar el laboratorio y comenzar de nuevo con nuestros experimentos mágicos.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <Button
+                  onClick={handleRestartGame}
+                  variant="glow"
+                  size="lg"
+                  className="gap-2"
+                >
+                  <RefreshCw className="h-5 w-5" />
+                  ¡Reiniciar Experimentos!
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
   };
 
   const renderIntro = () => (
@@ -90,6 +150,10 @@ const Laboratory: React.FC = () => {
                     <li className="flex gap-2">
                       <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">3</span>
                       <span>Por cada palabra correcta, ganarás puntos para avanzar.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs">4</span>
+                      <span><strong>¡Cuidado!</strong> Si se acaba el tiempo en cualquier desafío, ¡perderás y tendrás que comenzar de nuevo!</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -248,9 +312,18 @@ const Laboratory: React.FC = () => {
     );
   };
 
+  let content;
+  if (showIntro) {
+    content = renderIntro();
+  } else if (gameState.gameOver) {
+    content = renderGameOver();
+  } else {
+    content = renderLaboratory();
+  }
+
   return (
     <div className="w-full overflow-x-hidden">
-      {showIntro ? renderIntro() : renderLaboratory()}
+      {content}
     </div>
   );
 };

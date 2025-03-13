@@ -29,6 +29,7 @@ interface GameState {
     errorPosition?: number;
   } | null;
   gameStarted: boolean;
+  gameOver: boolean; // Nuevo estado para controlar cuando el juego ha terminado
   remainingTime: number;
   correctWords: string[];
   incorrectAttempts: string[];
@@ -41,6 +42,7 @@ interface GameContextType {
   setUserInput: (input: string) => void;
   nextChallenge: () => void;
   resetLevel: () => void;
+  resetGame: () => void; // Nueva función para reiniciar el juego completamente
 }
 
 const initialLevels: Level[] = [
@@ -290,7 +292,7 @@ const initialLevels: Level[] = [
         timeLimit: 60
       }
     ],
-    requiredPoints: 30 // puntos para ganar (cambiar al mimso numero de desafios) 
+    requiredPoints: 6 // puntos para ganar (cambiar al mimso numero de desafios) 
   }
 ];
 
@@ -302,6 +304,7 @@ const initialState: GameState = {
   userInput: '',
   feedback: null,
   gameStarted: false,
+  gameOver: false, // Inicializamos gameOver como false
   remainingTime: 0,
   correctWords: [],
   incorrectAttempts: []
@@ -315,19 +318,21 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     
-    if (gameState.gameStarted && gameState.remainingTime > 0) {
+    if (gameState.gameStarted && gameState.remainingTime > 0 && !gameState.gameOver) {
       timer = setInterval(() => {
         setGameState(prevState => ({
           ...prevState,
           remainingTime: prevState.remainingTime - 1
         }));
       }, 1000);
-    } else if (gameState.remainingTime === 0 && gameState.gameStarted) {
+    } else if (gameState.remainingTime === 0 && gameState.gameStarted && !gameState.gameOver) {
+      // Si el tiempo llega a 0, establecemos el juego como terminado (game over)
       setGameState(prevState => ({
         ...prevState,
+        gameOver: true,
         feedback: {
           isCorrect: false,
-          message: '¡Tiempo agotado! Inténtalo de nuevo.'
+          message: '¡Tiempo agotado! Has perdido. ¡Buen intento, pero tendrás que empezar de nuevo!'
         }
       }));
     }
@@ -335,7 +340,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [gameState.gameStarted, gameState.remainingTime]);
+  }, [gameState.gameStarted, gameState.remainingTime, gameState.gameOver]);
 
   const startGame = () => {
     const currentLevelData = initialState.levels[initialState.currentLevel];
@@ -344,11 +349,18 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setGameState({
       ...initialState,
       gameStarted: true,
+      gameOver: false,
       remainingTime: currentChallengeData.timeLimit
     });
   };
 
+  const resetGame = () => {
+    startGame();
+  };
+
   const checkWord = (word: string) => {
+    if (gameState.gameOver) return; // No hacemos nada si el juego ya terminó
+
     const currentLevel = gameState.levels[gameState.currentLevel];
     const challenge = currentLevel.challenges[gameState.currentChallenge];
     
@@ -413,6 +425,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const setUserInput = (input: string) => {
+    if (gameState.gameOver) return; // No hacemos nada si el juego ya terminó
+    
     setGameState(prevState => ({
       ...prevState,
       userInput: input,
@@ -421,6 +435,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const nextChallenge = () => {
+    if (gameState.gameOver) return; // No hacemos nada si el juego ya terminó
+    
     const currentLevel = gameState.levels[gameState.currentLevel];
     
     if (gameState.currentChallenge < currentLevel.challenges.length - 1) {
@@ -488,7 +504,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       feedback: null,
       correctWords: [],
       incorrectAttempts: [],
-      remainingTime: currentLevel.challenges[0].timeLimit
+      remainingTime: currentLevel.challenges[0].timeLimit,
+      gameOver: false // Restablecemos el estado de game over
     }));
   };
 
@@ -498,7 +515,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     checkWord,
     setUserInput,
     nextChallenge,
-    resetLevel
+    resetLevel,
+    resetGame
   };
 
   return (
